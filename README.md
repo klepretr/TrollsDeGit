@@ -1,7 +1,7 @@
 # TrollsDeGit
 Nuit de l'info 2018
 
-## Membre de l'équipe
+## Membres de l'équipe
 * Guillaume Deniau (chef d'équipe)
 * Kévin Leprêtre
 * Jean Savoldelli
