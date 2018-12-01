@@ -10,7 +10,7 @@ Pensez à bien redémarrer votre machine avant de continuer.
 ## Installation
 
 Tout d'abord, il faut télécharger les fichiers de la box homestead.  
-Attention, en focntion de votre réseau, cette commande peut prendre un certain temps...
+Attention, en fonction de votre réseau, cette commande peut prendre un certain temps...
 
 ```
 vagrant box add laravel/homestead
@@ -71,7 +71,7 @@ vagrant ssh
 ```
 Vérifier que le dossier partagé mis en place précédemment est bien présent, et si c'est le cas :bravo, tu es prêt pour la Nuit De l'Info !
 
-On n'oubliera pas de correctement étéindre la VM si la machine hôte doit être éteinte/redémarrée. Pour cela il suffit de faire cette commande :
+On n'oubliera pas de correctement étéindre sa VM si la machine hôte doit être éteinte/redémarrée. Pour cela il suffit de faire cette commande :
 ```
 vagrant destroy
 ```
