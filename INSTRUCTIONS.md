@@ -69,9 +69,9 @@ Si tout s'est bien passé, il ne reste plus qu'a éxécuter cette commande pour 
 ```
 vagrant ssh
 ```
-Vérifier que le dossier partagé mis en place précédemment est bien présent, et si c'est le cas :bravo, tu es prêt pour la Nuit De l'Info !
+Vérifier que le dossier partagé mis en place précédemment est bien présent, et si c'est le cas : bravo, tu es prêt pour la Nuit De l'Info !
 
-On n'oubliera pas de correctement étéindre sa VM si la machine hôte doit être éteinte/redémarrée. Pour cela il suffit de faire cette commande :
+On n'oubliera pas de correctement éteindre sa VM si la machine hôte doit être éteinte/redémarrée. Pour cela il suffit de faire cette commande :
 ```
 vagrant destroy
 ```
