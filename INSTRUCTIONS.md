@@ -7,7 +7,6 @@ Vous devez impérativement installer les composants suivants pour pouvoir utilis
 
 Pensez à bien redémarrer votre machine avant de continuer.
 
----
 ## Installation
 
 Tout d'abord, il faut télécharger les fichiers de la box homestead.  
@@ -35,7 +34,6 @@ init.bat
 ```
 Vous devrez vérifier que le fichier Homestead.yaml a bien été créé avant depasser à la suite.
 
----
 ## Configuration
 
 Pour pouvoir éditer le code depuis la machine hôte et l'éxécuter sur la VM, il va falloir mettre en place un dossier partagé. Pour cela, il faut éditer la fichier Homestead.yaml et remplir le champ folders comme ceci :
@@ -61,7 +59,6 @@ Pour l'instant, c'est le seul paramètre qu'il est nécessaire de changer. Avant
 * keys
 * folders
 
----
 ## Lancement et connexion
 
 A partir de là, il suffit d'éxécuter la commande suivante pour lancer la VM :
