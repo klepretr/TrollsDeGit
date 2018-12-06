@@ -38,4 +38,9 @@ class Mission extends Model
     {
     	return $this->hasOne(App\Models\Report::class);
     }
+
+    public function tasks()
+    {
+    	return $this->hasMany(App\Models\Task::class);
+    }
 }
