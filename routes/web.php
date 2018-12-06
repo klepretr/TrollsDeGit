@@ -30,3 +30,14 @@ Route::name('dashboard.')->group(function(){
     Route::get('', 'DashboardController@index')->name('index');
   });
 });
+
+
+Route::name('api.')->group(function(){
+  Route::prefix('api')->group(function(){
+    Route::get('missionfuture', 'MissionController@getAllFutureMission')
+        ->name('missionfuture');
+    Route::get('missionpast', 'MissionController@getAllPastMission')
+        ->name('missionpast');
+  });
+});
+
