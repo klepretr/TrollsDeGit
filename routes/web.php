@@ -30,3 +30,9 @@ Route::name('dashboard.')->group(function(){
     Route::get('', 'DashboardController@index')->name('index');
   });
 });
+
+Route::name('weather.')->group(function(){
+  Route::prefix('weather')->group(function(){
+    Route::get('{lat},{long}', 'WeatherController@get')->name('get')->where(['lat'=> '[+-]?([0-9]*[.])?[0-9]+', 'long'=>'[+-]?([0-9]*[.])?[0-9]+']);
+  });
+});
