@@ -24,6 +24,11 @@ class Mission extends Model
         
     ];
 
+    public function user()
+    {
+    	return $this->belongsTo(App\Models\User::class);
+    }
+
     public function stuffs()
     {
     	return $this->belongsToMany(App\Models\Stuff::class);
