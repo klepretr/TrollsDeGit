@@ -18,3 +18,26 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::name('cockpit.')->group(function(){
+  Route::prefix('cockpit')->group(function(){
+    Route::get('', 'CockpitController@index')->name('index');
+  });
+});
+
+Route::name('dashboard.')->group(function(){
+  Route::prefix('dashboard')->group(function(){
+    Route::get('', 'DashboardController@index')->name('index');
+  });
+});
+
+
+Route::name('api.')->group(function(){
+  Route::prefix('api')->group(function(){
+    Route::get('missionfuture', 'MissionController@getAllFutureMission')
+        ->name('missionfuture');
+    Route::get('missionpast', 'MissionController@getAllPastMission')
+        ->name('missionpast');
+  });
+});
+
