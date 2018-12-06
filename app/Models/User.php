@@ -27,4 +27,9 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function missions()
+    {
+        return $this->hasMany(App\Models\Mission::class);
+    }
 }
