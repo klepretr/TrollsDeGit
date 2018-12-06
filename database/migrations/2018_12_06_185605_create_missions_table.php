@@ -18,6 +18,7 @@ class CreateMissionsTable extends Migration
             $table->text('description');
             $table->dateTime('start_date');
             $table->dateTime('end_date');
+            $table->date('oui');
             $table->enum('state', ['pending', 'running', 'done']);
             $table->timestamps();
         });
