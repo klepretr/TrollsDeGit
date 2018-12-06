@@ -12,7 +12,7 @@ class MissionsTableSeeder extends Seeder
      */
     public function run()
     {
-        for(i=0; i<10;i++) {
+        for($i=0; $i<10;$i++) {
     		\DB::table('missions')->insert([
             'description' => str_random(10),
             'start_date' => Carbon::now(),

@@ -12,11 +12,12 @@ class UsersTasksTableSeeder extends Seeder
      */
     public function run()
     {
-        for(i=0; i<10;i++) {
+        for($i=0; $i<10;$i++) {
     		\DB::table('users_tasks')->insert([
             'description' => str_random(10),
             'start_date' => Carbon::now(),
             'end_date' => Carbon::now(),
+            'user_id' => 1,
         ]);
     	}
     }
