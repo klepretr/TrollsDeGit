@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->integer('age')->unsigned();
             $table->string('firstname')->unique();
             $table->string('lastname');
+            $table->boolean('gender');
             $table->integer('role')->unsigned();
             $table->string('phone_number', 36)->nullable();
             $table->rememberToken();
