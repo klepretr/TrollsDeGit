@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMissionsTable extends Migration
+class CreateMissionsTasksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class CreateMissionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('missions', function (Blueprint $table) {
+        Schema::create('missions_tasks', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
             $table->text('description');
             $table->dateTime('start_date');
             $table->dateTime('end_date');
-            $table->enum('state', ['pending', 'running', 'done']);
+            $table->integer('mission_id')->unsigned()->references('id')->on('missions')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -31,6 +30,6 @@ class CreateMissionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('missions');
+        Schema::dropIfExists('missions_tasks');
     }
 }

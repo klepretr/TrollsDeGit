@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTasksTable extends Migration
+class CreateUsersTasksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateTasksTable extends Migration
      */
     public function up()
     {
-        Schema::create('tasks', function (Blueprint $table) {
+        Schema::create('users_tasks', function (Blueprint $table) {
             $table->increments('id');
             $table->text('description');
             $table->dateTime('start_date');
             $table->dateTime('end_date');
+            $table->integer('user_id')->unsigned()->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
