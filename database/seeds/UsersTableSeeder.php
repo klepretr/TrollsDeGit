@@ -21,7 +21,7 @@ class UsersTableSeeder extends Seeder
             'gender'=>1,
             'firstname'=>'John'.$i, 
             'lastname'=>'Doe'.$i,
-            'phone'=>'+33666666',
+            'phone_number'=>'+33666666',
         ]);
     	}
         
