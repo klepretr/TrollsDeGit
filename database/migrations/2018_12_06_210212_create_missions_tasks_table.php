@@ -14,7 +14,7 @@ class CreateMissionsTasksTable extends Migration
     public function up()
     {
         Schema::create('missions_tasks', function (Blueprint $table) {
-           table->increments('id');
+            $table->increments('id');
             $table->text('description');
             $table->dateTime('start_date');
             $table->dateTime('end_date');
