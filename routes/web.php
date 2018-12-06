@@ -31,6 +31,7 @@ Route::name('dashboard.')->group(function(){
   });
 });
 
+
 Route::name('api.')->group(function(){
   Route::prefix('api')->group(function(){
     Route::get('missionfuture', 'MissionController@getAllFutureMission')
@@ -39,3 +40,4 @@ Route::name('api.')->group(function(){
         ->name('missionpast');
   });
 });
+

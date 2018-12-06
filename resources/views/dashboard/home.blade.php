@@ -1,3 +1,4 @@
+
 @extends('layouts.template_dashboard')
 
 
@@ -32,12 +33,12 @@
 
 
 
-
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
+
                 <div class="card-header">Missions Passées</div><br>
 
                 <div class="card-body">
@@ -78,6 +79,7 @@
                     </tbody>
     
                     </table>
+
                 </div>
             </div>
         </div>
