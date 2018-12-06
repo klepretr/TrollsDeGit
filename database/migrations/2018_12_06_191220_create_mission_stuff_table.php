@@ -18,8 +18,8 @@ class CreateMissionStuffTable extends Migration
             $table->integer('mission_id')->unsigned();
             $table->integer('stuff_id')->unsigned();
 
-            $table->foreign('mission_id')->references('id')->on('mission')->onDelete('cascade');
-            $table->foreign('stuff_id')->references('id')->on('stuff');
+            $table->foreign('mission_id')->references('id')->on('missions')->onDelete('cascade');
+            $table->foreign('stuff_id')->references('id')->on('stuffs');
         });
     }
 
