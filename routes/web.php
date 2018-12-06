@@ -28,16 +28,10 @@ Route::name('cockpit.')->group(function(){
 Route::name('dashboard.')->group(function(){
   Route::prefix('dashboard')->group(function(){
     Route::get('', 'DashboardController@index')->name('index');
+    Route::get('report', 'DashboardController@report')->name('report');
   });
 });
 
 
-Route::name('api.')->group(function(){
-  Route::prefix('api')->group(function(){
-    Route::get('missionfuture', 'MissionController@getAllFutureMission')
-        ->name('missionfuture');
-    Route::get('missionpast', 'MissionController@getAllPastMission')
-        ->name('missionpast');
-  });
-});
+
 
