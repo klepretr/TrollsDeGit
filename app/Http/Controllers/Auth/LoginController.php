@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Auth;
 
 class LoginController extends Controller
 {
@@ -20,13 +21,18 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
 
+    public function username()
+    {
+        return 'name';
+    }
+
    
     protected function redirectTo()
     {
 
-        if($user->role==$user::SUPERVISEUR or $user->role==$user::ADMIN){
+        if(Auth::user()->role==Auth::user()::SUPERVISEUR or Auth::user()->role==Auth::user()::ADMIN){
             return route('dashboard.index');
-        } elseif($user->role==$user::AGENT){
+        } elseif(Auth::user()->role==Auth::user()::AGENT){
             return route('cockpit.index');
         }   
 
