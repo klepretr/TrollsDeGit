@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateStuffsLocationsTable extends Migration
+class CreateNotificationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateStuffsLocationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('stuffs_locations', function (Blueprint $table) {
-            $table->increments('id');
-            $table->float('latitude');
-            $table->float('longitude');
-            $table->integer('stuff_id')->unsigned()->references('id')->on('stuffs')->onDelete('cascade');
+        Schema::create('notifications', function (Blueprint $table) {
+            $table->uuid('id')->primary();
+            $table->string('type');
+            $table->morphs('notifiable');
+            $table->text('data');
+            $table->timestamp('read_at')->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ class CreateStuffsLocationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('stuffs_locations');
+        Schema::dropIfExists('notifications');
     }
 }

@@ -17,7 +17,7 @@ class CreateUsersLocationsTable extends Migration
             $table->increments('id');
             $table->float('latitude');
             $table->float('longitude');
-            $table->unsigned()->integer('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->integer('user_id')->unsigned()->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

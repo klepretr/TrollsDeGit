@@ -15,7 +15,7 @@ class CreateReportsTable extends Migration
     {
         Schema::create('reports', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsigned()->integer('mission_id')->references('id')->on('missions');
+            $table->integer('mission_id')->unsigned()->references('id')->on('missions');
             $table->text('content');
             $table->timestamps();
         });

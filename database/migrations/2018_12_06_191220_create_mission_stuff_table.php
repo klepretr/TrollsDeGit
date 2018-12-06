@@ -13,7 +13,7 @@ class CreateMissionStuffTable extends Migration
      */
     public function up()
     {
-        Schema::table('mission_stuff', function (Blueprint $table) {
+        Schema::create('mission_stuff', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('mission_id')->unsigned();
             $table->integer('stuff_id')->unsigned();
@@ -30,8 +30,6 @@ class CreateMissionStuffTable extends Migration
      */
     public function down()
     {
-        Schema::table('mission_stuff', function (Blueprint $table) {
-            Schema::drofIfExists('mission_stuff');
-        });
+        Schema::dropfIfExists('mission_stuff');
     }
 }

@@ -17,7 +17,7 @@ class CreateFilesTable extends Migration
             $table->increments('id');
             $table->string('url')->unique();
             $table->string('title');
-            $table->unsigned()->integer('uploaded_by')->references('id')->on('users');
+            $table->integer('uploaded_by')->unsigned()->references('id')->on('users');
             $table->timestamps();
         });
     }
