@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Mission extends Model
+class Stuff extends Model
 {
     /**
      * The attributes that are mass assignable.
@@ -12,7 +12,7 @@ class Mission extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'description', 'start_date', 'end_date', 'state', 'user_id'
+        'name', 'description', 'type', 'user_guide', 'state'
     ];
 
     /**
@@ -24,8 +24,8 @@ class Mission extends Model
         
     ];
 
-    public function stuffs()
+    public function missions()
     {
-    	return $this->belongsToMany(App\Models\Stuff::class);
+    	return $this->belongsToMany(App\Models\Missions::class);
     }
 }
