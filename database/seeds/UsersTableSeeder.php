@@ -19,8 +19,8 @@ class UsersTableSeeder extends Seeder
             'role'=>0,
             'age'=>12,
             'gender'=>1,
-            'firstname'=>'John'.$i, 
-            'lastname'=>'Doe'.$i,
+            'firstname'=>str_random(3), 
+            'lastname'=>str_random(5),
             'phone_number'=>'+33666666',
         ]);
     	}
