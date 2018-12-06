@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'firstname', 'lastname', 'gender', 'age', 'role', 'phone'
     ];
 
     /**
@@ -31,5 +31,30 @@ class User extends Authenticatable
     public function missions()
     {
         return $this->hasMany(App\Models\Mission::class);
+    }
+
+    public function files()
+    {
+        return $this->hasMany(App\Models\File::class);
+    }
+
+    public function tasks()
+    {
+        return $this->hasMany(App\Models\UsersTask::class);
+    }
+
+    public function locations()
+    {
+        return $this->hasMany(App\Models\Location::class);
+    }
+
+    public function sent_messages()
+    {
+        return $this->hasMany(App\Models\Messages::class, 'author_id');
+    }
+
+    public function received_messages()
+    {
+        return $this->hasMany(App\Models\Messages::class, 'receiver_id');
     }
 }
