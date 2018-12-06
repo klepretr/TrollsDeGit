@@ -20,12 +20,18 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
 
-    /**
-     * Where to redirect users after login.
-     *
-     * @var string
-     */
-    protected $redirectTo = '/home';
+   
+    protected function redirectTo()
+    {
+
+        if($user->role==$user::SUPERVISEUR or $user->role==$user::ADMIN){
+            return route('dashboard.index');
+        } elseif($user->role==$user::AGENT){
+            return route('cockpit.index');
+        }   
+
+    }
+    
 
     /**
      * Create a new controller instance.
