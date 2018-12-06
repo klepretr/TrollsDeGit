@@ -26,6 +26,6 @@ class Stuff extends Model
 
     public function missions()
     {
-    	return $this->belongsToMany(App\Models\Missions::class);
+    	return $this->belongsToMany(Missions::class);
     }
 }

@@ -25,11 +25,11 @@ class Report extends Model
 
     public function files()
     {
-        return $this->hasMany(App\Models\Report::class);
+        return $this->hasMany(Report::class);
     }
 
     public function mission()
     {
-    	return $this->belongsTo(App\Models\Mission::class);
+    	return $this->belongsTo(Mission::class);
     }
 }
