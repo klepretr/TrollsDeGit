@@ -15,6 +15,18 @@
     </tr>
   </script>
     
+  <script id="element-template-future" type="text/x-handlebars-template">
+    <tr class="element" id="" >
+            <div>
+                <tr>
+                    <td>@{{name}}</td>
+                    <td>@{{date}}</td>
+                </tr>
+                <tr><td colspan="2">@{{description}}</td></tr>
+            </div>
+    </tr>
+  </script>
+    
 @endsection
 
 
@@ -35,9 +47,11 @@
                         <div>
                             <tr>
                                 <td>Nom</td>
+                                <td></td>
                                 <td>Date</td>
                             </tr>
-                            <tr><td colspan="2">Description</td></tr>
+                            <tr><td colspan="2">Description</td>
+                            <td><button>Report</button></td></tr>
                         </div>
 
                     </tbody>

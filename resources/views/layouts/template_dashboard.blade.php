@@ -31,6 +31,10 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
+    
+    
+    <!-- Templates --> 
+    @yield('template')
 </head>
 
 <body>
