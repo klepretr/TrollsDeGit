@@ -43,6 +43,8 @@ Route::name('dashboard.')->group(function(){
     Route::get('myAlerts', 'AlertsController@showMyAlerts')->name('myAlerts');
     Route::get('alerts', 'AlertsController@alerts')->name('alerts');
     Route::post('storeAlert', 'AlertsController@storeAlert')->name('storeAlert');
+    Route::get('editagent/{id}', 'DashboardController@editagent')->name('editagent');
+    Route::post('editagentAction', 'DashboardController@editagentAction')->name('editagentAction');
 
 
   });
