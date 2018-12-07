@@ -25,9 +25,12 @@ Route::name('cockpit.')->group(function(){
   });
 });
 
-Route::name('dashboard.')->group(function(){
+Route::name('dashboard.')->middleware('auth')->group(function(){
   Route::prefix('dashboard')->group(function(){
     Route::get('', 'DashboardController@index')->name('index');
+    Route::get('generateTokenRegistration', 'DashboardController@registerToken')->name('registerToken');
+    Route::post('generateTokenRegistration', 'DashboardController@storeToken')->name('storeToken');
+    Route::post('changeTheme', 'DashboardController@changeTheme')->name('changeTheme');
     Route::get('report/{id}', 'DashboardController@report')->name('report');
     Route::get('gestionAgent', 'DashboardController@gestionAgent')->name('gestionAgent');
     Route::get('gestionMateriel', 'DashboardController@gestionMateriel')->name('gestionMateriel');

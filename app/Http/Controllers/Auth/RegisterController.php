@@ -7,6 +7,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Validation\Rule;
+use App\Models\Registration;
+use Auth;
 
 class RegisterController extends Controller
 {
@@ -28,7 +31,16 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected function redirectTo()
+    {
+
+        if(Auth::user()->role==Auth::user()::SUPERVISEUR or Auth::user()->role==Auth::user()::ADMIN){
+            return route('dashboard.index');
+        } elseif(Auth::user()->role==Auth::user()::AGENT){
+            return route('cockpit.index');
+        }   
+
+    }
 
     /**
      * Create a new controller instance.
@@ -38,7 +50,6 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
-        $this->middleware('');
     }
 
     /**
@@ -52,8 +63,13 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'firstname' => ['required', 'string'],
+            'lastname' => ['required', 'string'],
+            'gender' => ['required'],
+            'phone_number' => ['required','string'],
             'password' => ['required', 'string', 'min:6', 'confirmed'],
-            'token' => ['required', 'string', 'exists:registration,token']
+            'token_registration'=>['required', 'string'],
+            'age'=>['required'],
         ]);
     }
 
@@ -65,12 +81,25 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        if($data['token_registration'] == Registration::where('email', $data['email'])->first()->token){
+            $user = User::create([
+                'name' => $data['name'],
+                'email' => $data['email'],
+                'firstname'=>$data['firstname'],
+                'lastname'=>$data['lastname'],
+                'gender'=>$data['gender'],
+                'phone_number'=>$data['phone_number'],
+                'role'=>substr($data['token_registration'], 0, 1),
+                'age'=>$data['age'],
+                'password' => Hash::make($data['password']),
+            ]);
+            if($user) {
+                Registration::where('token', $data['token_registration'])->delete();
+                return $user;
+            }
+        } else {
+            abort(403);
+        }
 
-
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
     }
 }

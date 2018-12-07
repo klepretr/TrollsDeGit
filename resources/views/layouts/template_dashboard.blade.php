@@ -50,12 +50,31 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">DASHBOARD</a>
+                <a class="navbar-brand" href="{{ route('dashboard.index') }}">DASHBOARD</a>
                 </div>
                 <div id="navbar" class="collapse navbar-collapse">
-                <ul class="nav navbar-nav navbar-user navbar-right">
-                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> UserNAME DUR </a></li>
-                    <li><a href="#about"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                <ul class="nav navbar-nav navbar-user navbar-right" style="height:100%">
+                    <li style="height:50px;">
+                        <form style="height:100%;display:flex;align-items:center;"method="post" action="{{ route('dashboard.changeTheme') }}">
+                            @csrf
+                            <select name="theme" style="margin-right:10px;">
+                                <option value="0" {{ Auth::user()->night_mode == 0 ? 'selected' : '' }}>Mode nuit automatique</option>
+                                <option value="1" {{ Auth::user()->night_mode == 1 ? 'selected' : '' }}>Mode nuit on</option>
+                                <option value="2" {{ Auth::user()->night_mode == 2 ? 'selected' : '' }}>Mode nuit off</option>
+                            </select>
+                            <input type="submit" value="Changer" />
+                        </form>
+
+                    <li><a href="#"><span class="glyphicon glyphicon-user"></span>{{ Auth::user()->name }}</a></li>
+                    <li><a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form></li>
                 </ul>
                 </div><!--/.nav-collapse -->
             </div>
@@ -63,14 +82,21 @@
         <nav class="navbar-primary">
         <ul class="navbar-primary-menu">
             <li>
-                <a href="gestionAgent"><span class="glyphicon glyphicon-list-alt"></span><span class="nav-label">Gestion Agent</span></a>
-                <a href="gestionMateriel"><span class="glyphicon glyphicon-list-alt"></span><span class="nav-label">Gestion Matériel</span></a>
-                <a href="createMission"><span class="glyphicon glyphicon-list-alt"></span><span class="nav-label">Creation Mission</span></a>
 
+                <a href="#"><span class="glyphicon glyphicon-list-alt"></span><span class="nav-label">Gestion Agent</span></a>
+                <a href="#"><span class="glyphicon glyphicon-list-alt"></span><span class="nav-label">Gestion Matériel</span></a>
+                <a href="{{ route('dashboard.registerToken') }}"><span class="glyphicon glyphicon-list-alt"></span><span class="nav-label">Génération token d'accès</span></a>
+                <a href="createMission"><span class="glyphicon glyphicon-list-alt"></span><span class="nav-label">Creation Mission</span></a>
+                
             </li>
         </ul>
         </nav>
         <div class="main-content">
+                @if (session('status'))
+                     <div class="alert alert-success" role="alert">
+                        {{ session('status') }}
+                    </div>
+                @endif
             @yield('content')
         </div>
 
