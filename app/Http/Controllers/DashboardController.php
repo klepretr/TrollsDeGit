@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Model\Missions;
+
+
 class DashboardController extends Controller
 {
     //
@@ -11,4 +14,5 @@ class DashboardController extends Controller
     {
       return view('dashboard.home');
     }
+
 }
