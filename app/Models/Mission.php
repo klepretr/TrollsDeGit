@@ -26,21 +26,21 @@ class Mission extends Model
 
     public function user()
     {
-    	return $this->belongsTo(App\Models\User::class);
+    	return $this->belongsToMany(User::class);
     }
 
     public function stuffs()
     {
-    	return $this->belongsToMany(App\Models\Stuff::class);
+    	return $this->belongsToMany(Stuff::class);
     }
 
     public function report()
     {
-    	return $this->hasOne(App\Models\Report::class);
+    	return $this->hasOne(Report::class);
     }
 
     public function tasks()
     {
-    	return $this->hasMany(App\Models\MissionsTask::class);
+    	return $this->hasMany(MissionsTask::class);
     }
 }

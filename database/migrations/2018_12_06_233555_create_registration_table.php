@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMessagesTable extends Migration
+class CreateRegistrationTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateMessagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('messages', function (Blueprint $table) {
+        Schema::create('registration', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('author_id')->unsigned()->references('id')->on('users')->onDelete('cascade');
-            $table->integer('receiver_id')->nullable()->unsigned()->references('id')->on('users')->onDelete('cascade');
-            $table->text('content');
             $table->timestamps();
+            $table->string('email');
+            $table->string('token');
         });
     }
 
@@ -29,6 +28,6 @@ class CreateMessagesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('messages');
+        Schema::dropIfExists('registration');
     }
 }

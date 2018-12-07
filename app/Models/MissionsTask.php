@@ -26,6 +26,6 @@ class MissionsTask extends Model
 
     public function mission()
     {
-    	return $this->belongsTo(App\Models\Mission::class);
+    	return $this->belongsTo(Mission::class);
     }
 }
