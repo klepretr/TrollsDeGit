@@ -49,7 +49,7 @@
 <script>
         if (!Detector.webgl) Detector.addGetWebGLMessage();
     
-        var container, camera, scene, renderer, size, table_size, terrain, load_timeout, model_timeout, planeTop, planeBottom, planeRight, planeLeft, verticalMirror, table_model, outlinePass, composer;
+        var bat1, bat2, bat3, container, camera, scene, renderer, size, table_size, terrain, load_timeout, model_timeout, planeTop, planeBottom, planeRight, planeLeft, verticalMirror, table_model, outlinePass, composer;
     
         var full_screen_enabled = false;
         var click_level = 0;
@@ -63,7 +63,8 @@
         });
         var materialRed = new THREE.LineBasicMaterial({
             color: 0xff0000
-        }); 
+        });
+        var batiments;
         
     
         init();
@@ -77,6 +78,13 @@
             camera.up.set(0, 1, 0);
             renderer = new THREE.WebGLRenderer({ antialias: true });
     
+            //==============================================================
+            //Highlight elements
+            function highlightBatiment(number){
+                outlinePass.selectedObjects = [];
+                if(number >= 1 && number <= 3) outlinePass.selectedObjects = [batiments[number-1]];
+            }
+
             //==============================================================
             //Lights
             var ambientLight = new THREE.AmbientLight(0xffffff, 1);
@@ -104,7 +112,7 @@
                 });
             }
             //==============================================================
-            // Place the base after clicked on point
+            // Place the base
             function placeObjects() {
                 var point = new THREE.Vector3(0.06841409007088721, 0.11014283240951989, 0.30837955106009607);
     
@@ -137,6 +145,7 @@
                     );
                     scene.add(line);
                     scene.add(object.scene);
+                    bat1 = object.scene,
     
                     load_object('{{ asset("models/base1/scene.gltf") }}').then(function (object) {
                         object.scene.scale.set(1 / 500, 1 / 500, 1 / 500);
@@ -147,6 +156,7 @@
     
                         object.scene.position.set(point.x - tempSize1.x, point.y, point.z - tempSize1.z);
                         scene.add(object.scene);
+                        bat2 = object.scene;
     
                         load_object('{{ asset("models/antenna/scene.gltf") }}').then(function (object) {
                             object.scene.scale.set(1 / 5000, 1 / 5000, 1 / 5000);
@@ -167,32 +177,12 @@
     
                                 object.scene.position.set(point.x + tempSize1.x, point.y + tempSize4.y, point.z);
                                 scene.add(object.scene);
+                                bat3 = object.scene;
+                                
+                                batiments = [bat1, bat2, bat3];
                             });
                         });
                     });
-                });
-            }
-            //==============================================================
-            // Place Human
-            function placeHUman(x, z){
-                var raycasterHuman = new THREE.Raycaster();
-                var directionHuman = new THREE.Vector3(0, -1, 0);
-                var positionHuman = new THREE.Vector3(x, size.y * 3, z);
-                raycasterHuman.set(positionHuman, directionHuman);
-                intersectHuman = raycasterHuman.intersectObjects([terrain], true);
-                var humanPos = intersectHuman[0].point;
-                var geometry = new THREE.Geometry();
-                var line = new THREE.Line(geometry, materialBlue);
-                geometry.vertices.push(
-                    humanPos,
-                    new THREE.Vector3(humanPos.x, size.y*2, humanPos.z)
-                );
-                scene.add(line);
-    
-                load_object('{{ asset("models/human/scene.gltf") }}').then(function (object) {
-                    object.scene.scale.set(1 / 500000, 1 / 500000, 1 / 500000);
-                    object.scene.position.set(humanPos.x, humanPos.y, humanPos.z);
-                    scene.add(object.scene);
                 });
             }
     
@@ -227,11 +217,7 @@
                 var spotLight = new THREE.SpotLight(0xffffff);
                 spotLight.position.set(size.x, size.y * 3, size.z);
                 camera.position.set(0, size.y / 2, 2 * size.y);
-    
-                placeHUman((Math.random() * size.x) - size.x / 2, (Math.random() * size.z) - size.z / 2);
-                placeHUman((Math.random() * size.x) - size.x / 2, (Math.random() * size.z) - size.z / 2);
-                placeHUman((Math.random() * size.x) - size.x / 2, (Math.random() * size.z) - size.z / 2);
-    
+                
             });
     
             controls = new THREE.OrbitControls(camera, renderer.domElement);
@@ -241,7 +227,7 @@
             controls.rotateSpeed = 0.03;
             controls.autoRotateSpeed = 0.5;
             controls.autoRotate = false;
-            controls.domElement.addEventListener('mousedown', checkIfClicked, false);
+            //controls.domElement.addEventListener('mousedown', checkIfClicked, false);
             window.addEventListener('resize', onWindowResize, false);
     
             renderer.setSize(container.clientWidth, container.clientHeight);
