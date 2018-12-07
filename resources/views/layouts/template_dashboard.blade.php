@@ -67,6 +67,7 @@
                     @endauth
 
                     <li><a href="#"><span class="glyphicon glyphicon-user"></span>@auth {{ Auth::user()->name }} @else Invité @endauth</a></li>
+                    @auth<li><a href="{{ route('dashboard.myAlerts') }}"><span class="glyphicon glyphicon-user"></span>Mes messages</a></li>@endauth
                     @auth
                         <li>    <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();

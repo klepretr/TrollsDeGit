@@ -10,12 +10,12 @@ class MissionController extends Controller
 {
     
     public function getAllPastMission(){
-      $missions = Mission::where('end_date','<',now())->get();
-      return response()->json($missions);
+      	$missions = Mission::where('end_date','<',now())->get();
+      	return response()->json($missions);
     }
     public function getAllFutureMission(){
         $missions = Mission::where('start_date','>=',now())->get();
         return response()->json($missions);
-      }
+    }
 
 }
