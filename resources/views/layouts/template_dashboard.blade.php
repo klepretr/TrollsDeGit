@@ -83,8 +83,8 @@
         <ul class="navbar-primary-menu">
             <li>
 
-                <a href="#"><span class="glyphicon glyphicon-list-alt"></span><span class="nav-label">Gestion Agent</span></a>
-                <a href="#"><span class="glyphicon glyphicon-list-alt"></span><span class="nav-label">Gestion Matériel</span></a>
+                <a href="{{ route('dashboard.gestionAgent')}}"><span class="glyphicon glyphicon-list-alt"></span><span class="nav-label">Gestion Agent</span></a>
+                <a href="{{ route('dashboard.gestionMateriel')}}"><span class="glyphicon glyphicon-list-alt"></span><span class="nav-label">Gestion Matériel</span></a>
                 <a href="{{ route('dashboard.registerToken') }}"><span class="glyphicon glyphicon-list-alt"></span><span class="nav-label">Génération token d'accès</span></a>
                 <a href="createMission"><span class="glyphicon glyphicon-list-alt"></span><span class="nav-label">Creation Mission</span></a>
                 
