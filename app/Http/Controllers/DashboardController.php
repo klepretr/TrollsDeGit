@@ -87,20 +87,6 @@ class DashboardController extends Controller
       $materiels=Stuff::get();
       return view('dashboard.materiel',["materiels"=>$materiels]);
     }
-    public function createMission()
-    {
-      $agents=User::where("role",User::AGENT)->get();
-      $materiels=Stuff::get();
 
-      return view('dashboard.new_mission',["agents"=>$agents,"materiels"=>$materiels]);
-    }
-
-    public function createMissionAction(Request $request)
-    {
-      $name=$request->input('mission_name');
-      $date=$request->input('mission_date');
-
-     dd($request);
-    }
 
 }
