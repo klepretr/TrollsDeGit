@@ -22,7 +22,7 @@
                             @foreach($missions_past as $mission)
                             <div>
                                 <tr>
-                                    <td>{{$mission->name}}</td>
+                                    <td><a href="{{ route('dashboard.showMission', ['id'=>$mission->id]) }}">{{$mission->name}}</a></td>
                                     <td></td>
                                     <td>{{$mission->date}}</td>
                                 </tr>
@@ -49,7 +49,7 @@
                             @foreach($missions_future as $mission)
                             <div>
                                 <tr>
-                                    <td>{{$mission->name}}</td>
+                                    <td><a href="{{ route('dashboard.showMission', ['id'=>$mission->id]) }}">{{$mission->name}}</a></td>
                                     <td></td>
                                     <td>{{$mission->date}}</td>
                                 </tr>

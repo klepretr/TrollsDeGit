@@ -30,6 +30,12 @@ class MissionController extends Controller
       	return view('dashboard.new_mission',["agents"=>$agents,"materiels"=>$materiels]);
     }
 
+    public function showMission($id)
+    {
+    	$mission = Mission::find($id);
+    	return view('dashboard.showMission',['mission'=>$mission]);
+    }
+
     public function storeMission(Request $request)
     {
     	$validation = Validator::make($request->all(), [

@@ -43,6 +43,7 @@ Route::name('dashboard.')->group(function(){
     Route::get('createMission', 'MissionController@createMission')->name('createMission');
     Route::post('storeMission', 'MissionController@storeMission')->name('storeMission');
     Route::get('editstuff/{id}', 'DashboardController@editstuff')->name('editstuff');
+    Route::get('showMission/{id}', 'MissionController@showMission')->name('showMission');
   });
 });
 
