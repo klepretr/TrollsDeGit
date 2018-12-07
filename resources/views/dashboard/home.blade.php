@@ -2,33 +2,7 @@
 @extends('layouts.template_dashboard')
 
 
-@section('template')
 
-<script id="element-template" type="text/x-handlebars-template">
-    <tr class="element" id="" >
-            <div>
-                <tr>
-                    <td>@{{name}}</td>
-                    <td>@{{date}}</td>
-                </tr>
-                <tr><td colspan="2">@{{description}}</td></tr>
-            </div>
-    </tr>
-  </script>
-    
-  <script id="element-template-future" type="text/x-handlebars-template">
-    <tr class="element" id="" >
-            <div>
-                <tr>
-                    <td>@{{name}}</td>
-                    <td>@{{date}}</td>
-                </tr>
-                <tr><td colspan="2">@{{description}}</td></tr>
-            </div>
-    </tr>
-  </script>
-    
-@endsection
 
 
 
@@ -45,16 +19,20 @@
                     <table  class="table_past" style="width: 100%;">
                     
                     <tbody>
-                        <div>
-                            <tr>
-                                <td>Nom</td>
-                                <td></td>
-                                <td>Date</td>
-                            </tr>
-                            <tr><td colspan="2">Description</td>
-                            <td><button>Report</button></td></tr>
-                        </div>
-
+                            @foreach($missions_past as $mission)
+                            <div>
+                                <tr>
+                                    <td>{{$mission->name}}</td>
+                                    <td></td>
+                                    <td>{{$mission->date}}</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">{{$mission->description}}</td>
+                
+                                    <td><a href="{{route('dashboard.report', ['id'=>$mission->id])}}"><button >Report</button></a></td>
+                                </tr>
+                            </div>
+                        @endforeach
                     </tbody>
     
                     </table>
@@ -68,14 +46,20 @@
                     <table  class="table_future" style="width: 100%;">
                 
                     <tbody>
-                        <div>
-                            <tr>
-                                <td>Nom</td>
-                                <td>Date</td>
-                            </tr>
-                            <tr><td colspan="2">Description</td></tr>
-                        </div>
-
+                            @foreach($missions_future as $mission)
+                            <div>
+                                <tr>
+                                    <td>{{$mission->name}}</td>
+                                    <td></td>
+                                    <td>{{$mission->date}}</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">{{$mission->description}}</td>
+                
+                                    <td></td>
+                                </tr>
+                            </div>
+                        @endforeach
                     </tbody>
     
                     </table>
