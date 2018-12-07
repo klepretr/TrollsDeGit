@@ -63,10 +63,13 @@
             });
             var materialRed = new THREE.LineBasicMaterial({
                 color: 0xff0000
-            }); 
+            });
+            var agents = [];
             
         
             init();
+            var placeAgent;
+            var highlightAgent;
         
             function init() {
         
@@ -173,11 +176,17 @@
                     });
                 }
                 //==============================================================
+                // Highlight agent
+                highlightAgent = function(id){
+                    agents[id].value.material.color = new THREE.Color( 0xffffff );
+                }
+
+                //==============================================================
                 // Place Human
-                function placeHUman(x, z){
+                placeAgent = function(x, z, id){
                     var raycasterHuman = new THREE.Raycaster();
                     var directionHuman = new THREE.Vector3(0, -1, 0);
-                    var positionHuman = new THREE.Vector3(x, size.y * 3, z);
+                    var positionHuman = new THREE.Vector3((x * size.x) - size.x / 2, size.y * 3, (z* size.z) - size.z / 2);
                     raycasterHuman.set(positionHuman, directionHuman);
                     intersectHuman = raycasterHuman.intersectObjects([terrain], true);
                     var humanPos = intersectHuman[0].point;
@@ -188,32 +197,16 @@
                         new THREE.Vector3(humanPos.x, size.y*2, humanPos.z)
                     );
                     scene.add(line);
+                    agents.push({
+                            key: id,
+                            value: line
+                        });
         
                     load_object('{{ asset("models/human/scene.gltf") }}').then(function (object) {
                         object.scene.scale.set(1 / 500000, 1 / 500000, 1 / 500000);
                         object.scene.position.set(humanPos.x, humanPos.y, humanPos.z);
                         scene.add(object.scene);
                     });
-                }
-        
-                //==============================================================
-                // Detect click on elements
-                function checkIfClicked(event) {
-                    mouse.x = (event.offsetX / renderer.domElement.clientWidth) * 2 - 1;
-                    mouse.y = - (event.offsetY / renderer.domElement.clientHeight) * 2 + 1;
-                    raycaster.setFromCamera(mouse, camera);
-                    var intersects = raycaster.intersectObjects([terrain], true);
-                    if (intersects.length > 0) {
-                        selectedObject = intersects[0].object;
-                        outlinePass.selectedObjects = [selectedObject];
-        
-                        pointed = intersects[0].point;
-        
-                        if (click_level == 0) {
-                            click_level++;
-                        }
-        
-                    }
                 }
         
                 load_object('{{ asset("models/terrain/scene.gltf") }}').then(function (object) {
@@ -228,9 +221,10 @@
                     spotLight.position.set(size.x, size.y * 3, size.z);
                     camera.position.set(0, size.y / 2, 2 * size.y);
         
-                    placeHUman((Math.random() * size.x) - size.x / 2, (Math.random() * size.z) - size.z / 2);
-                    placeHUman((Math.random() * size.x) - size.x / 2, (Math.random() * size.z) - size.z / 2);
-                    placeHUman((Math.random() * size.x) - size.x / 2, (Math.random() * size.z) - size.z / 2);
+                    placeAgent(Math.random(), Math.random(), 1);
+                    placeAgent(Math.random(), Math.random(), 2);
+                    placeAgent(Math.random(), Math.random(), 3);
+                    //highlightAgent(2);
         
                 });
         
@@ -241,7 +235,6 @@
                 controls.rotateSpeed = 0.03;
                 controls.autoRotateSpeed = 0.5;
                 controls.autoRotate = false;
-                controls.domElement.addEventListener('mousedown', checkIfClicked, false);
                 window.addEventListener('resize', onWindowResize, false);
         
                 renderer.setSize(container.clientWidth, container.clientHeight);

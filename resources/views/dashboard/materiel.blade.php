@@ -81,7 +81,6 @@
             //==============================================================
             //Highlight elements
             highlightBatiment=function(number){
-                console.log(number);
                 outlinePass.selectedObjects = [];
                 if(number >= 1 && number <= 3) outlinePass.selectedObjects = [batiments[number-1]];
             }
