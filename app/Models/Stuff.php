@@ -28,4 +28,9 @@ class Stuff extends Model
     {
     	return $this->belongsToMany(Missions::class);
     }
+
+    public function location()
+    {
+        return $this->hasOne(StuffsLocation::class);
+    }
 }

@@ -12,7 +12,7 @@ class StuffsLocation extends Model
      * @var array
      */
     protected $fillable = [
-        'latitude', 'longitude', 'stuff_id'
+        'batiment_number', 'stuff_id'
     ];
 
     /**

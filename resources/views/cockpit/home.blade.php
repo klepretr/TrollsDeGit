@@ -184,7 +184,7 @@
         });
       });
     });
-
+/*
     var x = document.getElementById("test");
     if (x.addEventListener) {
         x.addEventListener("click", myFunction);
@@ -211,6 +211,6 @@
         setTimeout(sendAlert, 30000);
     }
 
-    setTimeout(sendAlert, 30000);
+    setTimeout(sendAlert, 30000);*/
   </script>
 @endsection

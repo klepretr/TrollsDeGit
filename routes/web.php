@@ -32,20 +32,19 @@ Route::name('dashboard.')->group(function(){
     Route::get('generateTokenRegistration', 'DashboardController@registerToken')->name('registerToken');
     Route::post('generateTokenRegistration', 'DashboardController@storeToken')->name('storeToken');
     Route::post('changeTheme', 'DashboardController@changeTheme')->name('changeTheme');
-    Route::post('storeAlert', 'AlertsController@storeAlert')->name('storeAlert');
-    Route::get('alerts', 'AlertsController@alerts')->name('alerts');
-    Route::get('myAlerts', 'AlertsController@showMyAlerts')->name('myAlerts');
+    Route::get('report/{id}', 'DashboardController@report')->name('report');
+    Route::get('gestionAgent', 'DashboardController@gestionAgent')->name('gestionAgent');
+    Route::get('gestionMateriel', 'DashboardController@gestionMateriel')->name('gestionMateriel');
+    Route::get('createMission', 'DashboardController@createMission')->name('createMission');
+    Route::post('createMissionAction', 'DashboardController@createMissionAction')->name('createMissionAction');
+    Route::get('editstuff/{id}', 'DashboardController@editstuff')->name('editstuff');
+    Route::post('editstuffAction', 'DashboardController@editstuffAction')->name('editstuffAction');
     Route::post('sendAlert', 'AlertsController@sendAlert')->name('sendAlert');
-  });
-});
+    Route::get('myAlerts', 'AlertsController@showMyAlerts')->name('myAlerts');
+    Route::get('alerts', 'AlertsController@alerts')->name('alerts');
+    Route::post('storeAlert', 'AlertsController@storeAlert')->name('storeAlert');
 
 
-Route::name('api.')->group(function(){
-  Route::prefix('api')->group(function(){
-    Route::get('missionfuture', 'MissionController@getAllFutureMission')
-        ->name('missionfuture');
-    Route::get('missionpast', 'MissionController@getAllPastMission')
-        ->name('missionpast');
   });
 });
 
@@ -54,3 +53,6 @@ Route::name('weather.')->group(function(){
     Route::get('{lat},{long}', 'WeatherController@get')->name('get')->where(['lat'=> '[+-]?([0-9]*[.])?[0-9]+', 'long'=>'[+-]?([0-9]*[.])?[0-9]+']);
   });
 });
+
+
+

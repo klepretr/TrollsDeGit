@@ -11,7 +11,7 @@ class StuffsTableSeeder extends Seeder
      */
     public function run()
     {
-        for($i=0; $i<10;$i++) {
+        for($i=0; $i<20;$i++) {
     		\DB::table('stuffs')->insert([
             'name' => str_random(10),
             'description' => str_random(10),
