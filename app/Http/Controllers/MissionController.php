@@ -41,23 +41,26 @@ class MissionController extends Controller
 
         if($validation) {
         	$mission = Mission::create(['name'=>$request->mission_name, 'description'=>$request->description, 'start_date'=>$request->mission_date, 'end_date'=>$request->end_date, 'state'=>'pending']);
-        	if(count($request->materiel)) {
+        	if(isset($request->materiel) && count($request->materiel)) {
         		foreach($request->materiel as $stuff_id)
         		{
-        			$stuff = Stuff::find($stuff_id);
-        			$mission->stuffs()->save($stuff);
+        			$mission->stuffs()->attach($stuff_id);
         		}
         	}
-        	if(count($request->addtask)){
-        		foreach($request->addTask as $task_description) {
-        			$task = MissionsTask::create(['description'=>$task_description]);
-        			$mission->tasks()->save($task);
+        	if(isset($request->agent) && count($request->agent)){
+        		foreach($request->agent as $agent) {
+        			$mission->user()->attach($agent);
+        		}
+        	}
+        	if(isset($request->addtask) && count($request->addtask)){
+        		foreach($request->addtask as $task_description) {
+        			$mission->tasks()->create(['description'=>$task_description]);
         		}
         	}
 
-        	return redirect(route('dashboard.index'))->with('status', 'Envoyer à '.$request->email.' le token d inscription suivant : '.$token);
+        	return redirect(route('dashboard.index'))->with('status', 'Mission enregistrée avec succès !');
         } else {
-        	return redirect(route('dashboard.registerToken'));
+        	return redirect(route('dashboard.index'));
         }
     }
 

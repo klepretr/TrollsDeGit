@@ -17,8 +17,8 @@ class CreateMissionsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->text('description');
-            $table->date('start_date');
-            $table->date('end_date');
+            $table->string('start_date')->nullable();
+            $table->string('end_date')->nullable();
             $table->enum('state', ['pending', 'running', 'done']);
             $table->timestamps();
         });

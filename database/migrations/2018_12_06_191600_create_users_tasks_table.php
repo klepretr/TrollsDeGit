@@ -16,8 +16,8 @@ class CreateUsersTasksTable extends Migration
         Schema::create('users_tasks', function (Blueprint $table) {
             $table->increments('id');
             $table->text('description');
-            $table->date('start_date')->nullable();
-            $table->date('end_date')->nullable();
+            $table->string('start_date')->nullable();
+            $table->string('end_date')->nullable();
             $table->integer('user_id')->unsigned()->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
