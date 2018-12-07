@@ -51,8 +51,19 @@
                 <a class="navbar-brand" href="#">DASHBOARD</a>
                 </div>
                 <div id="navbar" class="collapse navbar-collapse">
-                <ul class="nav navbar-nav navbar-user navbar-right">
-                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> UserNAME DUR </a></li>
+                <ul class="nav navbar-nav navbar-user navbar-right" style="height:100%">
+                    <li style="height:50px;">
+                        <form style="height:100%;display:flex;align-items:center;"method="post" action="{{ route('dashboard.changeTheme') }}">
+                            @csrf
+                            <select name="theme" style="margin-right:10px;">
+                                <option value="0" {{ Auth::user()->night_mode == 0 ? 'selected' : '' }}>Mode nuit automatique</option>
+                                <option value="1" {{ Auth::user()->night_mode == 1 ? 'selected' : '' }}>Mode nuit on</option>
+                                <option value="2" {{ Auth::user()->night_mode == 2 ? 'selected' : '' }}>Mode nuit off</option>
+                            </select>
+                            <input type="submit" value="Changer" />
+                        </form>
+
+                    <li><a href="#"><span class="glyphicon glyphicon-user"></span>{{ Auth::user()->name }}</a></li>
                     <li><a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

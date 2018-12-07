@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Mission;
 use App\Models\Registration;
+use Auth;
+use DB;
 
 class DashboardController extends Controller
 {
@@ -16,11 +18,20 @@ class DashboardController extends Controller
       return view('dashboard.home');
     }
 
+    /**
+     * Display the view linked with the registerToken method
+     * @return void
+     */
     public function registerToken()
     {
     	return view('dashboard.registerToken');
     }
 
+    /**
+     * Stores in db token with role and email in order to make someone able to register
+     * @param  Request $request Illuminate\Http\Request
+     * @return redirect
+     */
     public function storeToken(Request $request)
     {
     	$validation = Validator::make($request->all(), [
@@ -36,5 +47,20 @@ class DashboardController extends Controller
         	return redirect(route('dashboard.registerToken'));
         }
     }
+
+    /**
+     * Change the night_mode for the current user
+     * @param  Request $request Illuminate\Http\Request
+     * @return   redirect
+     */
+    public function changeTheme(Request $request)
+    {
+        DB::table('users')
+            ->where('id', Auth::user()->id)
+            ->update(['night_mode'=>$request->theme]);
+        return redirect(route('dashboard.index'))->with('status', 'Ok, mode nuit modifié');
+    }
+
+
 
 }
