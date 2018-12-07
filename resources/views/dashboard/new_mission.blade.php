@@ -1,19 +1,6 @@
 @extends('layouts.template_dashboard')
 
 
-@section('template')
-
-<script id="element-template" type="text/x-handlebars-template">
-
-
-
-</script>
-    
-@endsection
-
-
-
-
 
 @section('content')
 <div class="container">

@@ -56,7 +56,7 @@
                                 <tr>
                                     <td colspan="2">{{$mission->description}}</td>
                 
-                                    <td><a href="{{route('dashboard.report', ['id'=>$mission->id])}}"><button >Report</button></a></td>
+                                    <td></td>
                                 </tr>
                             </div>
                         @endforeach

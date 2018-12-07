@@ -61,8 +61,10 @@
         <nav class="navbar-primary">
         <ul class="navbar-primary-menu">
             <li>
-                <a href="#"><span class="glyphicon glyphicon-list-alt"></span><span class="nav-label">Gestion Agent</span></a>
-                <a href="#"><span class="glyphicon glyphicon-list-alt"></span><span class="nav-label">Gestion Matériel</span></a>
+                <a href="gestionAgent"><span class="glyphicon glyphicon-list-alt"></span><span class="nav-label">Gestion Agent</span></a>
+                <a href="gestionMateriel"><span class="glyphicon glyphicon-list-alt"></span><span class="nav-label">Gestion Matériel</span></a>
+                <a href="createMission"><span class="glyphicon glyphicon-list-alt"></span><span class="nav-label">Creation Mission</span></a>
+
             </li>
         </ul>
         </nav>
