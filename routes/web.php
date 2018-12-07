@@ -37,10 +37,10 @@ Route::name('dashboard.')->group(function(){
     Route::get('report/{id}', 'DashboardController@report')->name('report');
     Route::get('editstuff/{id}', 'DashboardController@editstuff')->name('editstuff');
     Route::post('editstuffAction', 'DashboardController@editstuffAction')->name('editstuffAction');
-    Route::post('storeAlert', 'AlertsController@storeAlert')->name('storeAlert');
-    Route::get('alerts', 'AlertsController@alerts')->name('alerts');
-    Route::get('myAlerts', 'AlertsController@showMyAlerts')->name('myAlerts');
     Route::post('sendAlert', 'AlertsController@sendAlert')->name('sendAlert');
+    Route::get('myAlerts', 'AlertsController@showMyAlerts')->name('myAlerts');
+    Route::get('alerts', 'AlertsController@alerts')->name('alerts');
+    Route::post('storeAlert', 'AlertsController@storeAlert')->name('storeAlert');
     Route::post('storeMission', 'MissionController@storeMission')->name('storeMission');
     Route::get('showMission/{id}', 'MissionController@showMission')->name('showMission');
     Route::get('createMission', 'MissionController@createMission')->name('createMission');
