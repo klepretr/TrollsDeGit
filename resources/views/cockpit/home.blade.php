@@ -12,56 +12,88 @@
             <li><a href="sass.html">Wiki</a></li>
           </ul>
           <ul id="nav-mobile" class="left">
-            <li><a href="collapsible.html"><i class="fas fa-medkit"></i>  SOS</a></li>
+            <li><a href="collapsible.html">SOS</a></li>
           </ul>
         </div>
       </nav>
       @if(!empty($alert))<nav id="breaking_news"><div class="breaking_news_1">{{ $alert->content }}</div></nav>@endif
     </header>
 
-    <div class="card-body">
-      <div class="col s12 m7">
-          <h2 class="header">Agenda</h2>
+    <div class="body">
+      <div class="card-body">
+        <div class="col s12 m7">
+            <h2 class="header">Agenda</h2>
+            <div class="card horizontal">
+                <div class="card-stacked">
+                    <div class="card-content">
+                        <p>INSERER LIEN AGENDA</p>
+                    </div>
+                    <div class="card-action">
+                        <a href="#">Résumé de Mission</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col s12 m7">
+          <h2 class="header">Météo</h2>
           <div class="card horizontal">
-              <div class="card-stacked">
-                  <div class="card-content">
-                      <p>INSERER LIEN AGENDA</p>
-                  </div>
-                  <div class="card-action">
-                      <a href="#">Résumé de Mission</a>
-                  </div>
+            <div class="card-image">
+              <i class="fas fa-cloud-sun-rain" style="font-size: 70px"></i>
+            </div>
+            <div class="card-stacked">
+              <div class="card-content">
+                <p>I am a very simple card. I am good at containing small bits of information.</p>
               </div>
-          </div>
-      </div>
-      <div class="col s12 m7">
-        <h2 class="header">Météo</h2>
-        <div class="card horizontal">
-          <div class="card-image">
-            <i class="fas fa-cloud-sun-rain" style="font-size: 70px"></i>
-          </div>
-          <div class="card-stacked">
-            <div class="card-content">
-              <p>I am a very simple card. I am good at containing small bits of information.</p>
-            </div>
-            <div class="card-action">
-              <a href="#">This is a link</a>
+              <div class="card-action">
+                <a href="#">This is a link</a>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="col s12 m7">
-        <h2 class="header">Carte</h2>
-        <div class="card horizontal mapbox">
-          <div class="card-stacked">
-            <a class="btn-floating btn-large waves-effect waves-light red" id="FullScreenButton"><i class="material-icons">fullscreen</i></a>
-          	<a class="btn-floating btn-large waves-effect waves-light red" id="TrashButton"><i class="material-icons">delete</i></a>
-            <div id="mapid">
+        <div class="col s12 m7">
+          <h2 class="header">Carte</h2>
+          <div class="card horizontal mapbox">
+            <div class="card-stacked">
+              <a class="btn-floating btn-large waves-effect waves-light red" id="FullScreenButton"><i class="material-icons">fullscreen</i></a>
+            	<a class="btn-floating btn-large waves-effect waves-light red" id="TrashButton"><i class="material-icons">delete</i></a>
+              <div id="mapid">
+              </div>
             </div>
           </div>
         </div>
+        <div class="fixed-action-btn direction-top" style="bottom: 45px; right: 24px;">
+          <a class="btn-floating btn-large red">
+            <i class="material-icons">mode_edit</i>
+          </a>
+          <ul>
+            <li>
+              <a class="btn-floating red" style="opacity: 0; transform: scale(0.4) translateY(40px) translateX(0px);">
+                <i class="material-icons">insert_chart</i>
+              </a>
+            </li>
+            <li>
+              <a class="btn-floating yellow darken-1" style="opacity: 0; transform: scale(0.4) translateY(40px) translateX(0px);">
+                <i class="material-icons">format_quote</i>
+              </a>
+            </li>
+            <li>
+              <a class="btn-floating green" style="opacity: 0; transform: scale(0.4) translateY(40px) translateX(0px);">
+                <i class="material-icons">publish</i>
+              </a>
+            </li>
+            <li>
+              <a class="btn-floating blue" style="opacity: 0; transform: scale(0.4) translateY(40px) translateX(0px);">
+                <i class="material-icons">attach_file</i>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="floating-bottom-right">
+          <a class="btn-floating btn-large waves-effect waves-light right pulse" type="submit" name="action"><i class="tiny material-icons">chat</i></a>
+        </div>
       </div>
-      <a class="btn-floating btn-large waves-effect waves-light right red pulse" type="submit" name="action"><i class="tiny material-icons">chat</i></a>
     </div>
+
 
 
 
@@ -134,5 +166,9 @@
 
 
     mymap.on('click', AddMarker);
+
+    $(document).ready(function(){
+      $('.fixed-action-btn').floatingActionButton();
+    });
   </script>
 @endsection
