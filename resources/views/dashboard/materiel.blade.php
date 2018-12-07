@@ -10,7 +10,7 @@
             @foreach($materiels as $materiel)
                 <li class="container-list-item" data_name="{{$materiel->name}}" data_description="{{$materiel->description}}" data_state="{{$materiel->state}}" data_type="{{$materiel->type}}"  data-pos="{{$loop->iteration}}">
                     <h3 class="container-list-item-title"> {{$materiel->name }}</h3>
-                    <a class="container-list-item-button" href="#">Edit</a>
+                    <a class="container-list-item-button" href="{{route('dashboard.editstuff', ['id'=>$materiel->id])}}">Edit</a>
                 </li>
             @endforeach
 		</div>
