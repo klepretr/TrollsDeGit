@@ -28,6 +28,8 @@ Route::name('cockpit.')->group(function(){
 Route::name('dashboard.')->group(function(){
   Route::prefix('dashboard')->group(function(){
     Route::get('', 'DashboardController@index')->name('index');
+    Route::get('generateTokenRegistration', 'DashboardController@registerToken')->name('registerToken');
+    Route::post('generateTokenRegistration', 'DashboardController@storeToken')->name('storeToken');
   });
 });
 
