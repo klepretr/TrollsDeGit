@@ -4,6 +4,30 @@ body{
 
 }
 
+#mapid{
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+#FullScreenButton {
+	position: absolute;
+	left: 50px;
+	top:10px;
+	z-index: 1000;
+}
+
+#TrashButton {
+	position: absolute;
+	left: 50px;
+	top:80px;
+	z-index: 1000;
+}
+
+.mapbox{
+  height: 300px;
+}
+
 .card-body{
   margin-left: auto;
   margin-right: auto;

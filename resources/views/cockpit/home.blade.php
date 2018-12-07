@@ -49,22 +49,90 @@
           </div>
         </div>
       </div>
+      <div class="col s12 m7">
+        <h2 class="header">Carte</h2>
+        <div class="card horizontal mapbox">
+          <div class="card-stacked">
+            <a class="btn-floating btn-large waves-effect waves-light red" id="FullScreenButton"><i class="material-icons">fullscreen</i></a>
+          	<a class="btn-floating btn-large waves-effect waves-light red" id="TrashButton"><i class="material-icons">delete</i></a>
+            <div id="mapid">
+            </div>
+          </div>
+        </div>
+      </div>
       <a class="btn-floating btn-large waves-effect waves-light right red pulse" type="submit" name="action"><i class="tiny material-icons">chat</i></a>
     </div>
 
+
+
   <script>
 
-    // Enable pusher logging - don't include this in production
-    Pusher.logToConsole = true;
+    var mymap = L.map('mapid').setView([47.08, 2.41], 13);
 
-    var pusher = new Pusher('ef2caf845d4a494ba99b', {
-      cluster: 'eu',
-      forceTLS: true
-    });
+    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}',
+      {
+        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+        maxZoom: 18,
+        id: 'mapbox.satellite',
+        accessToken: 'pk.eyJ1IjoibXVyZG9jaCIsImEiOiJjanBjemhtNDgwY2V4M3VvM3Y1MHptbXFwIn0.XcuZA3Y2KnY9IFJzONuh3w'
+    }).addTo(mymap);
 
-    var channel = pusher.subscribe('my-channel');
-    channel.bind('my-event', function(data) {
-      alert(JSON.stringify(data));
-    });
+    var marker = L.marker([47.09, 2.4]).addTo(mymap);
+
+    var GlobalLayer = L.layerGroup([marker]).addTo(mymap)
+
+    document.getElementById("FullScreenButton").onclick = function(){toggleFullScreen()};
+
+    document.getElementById("TrashButton").onclick = function(){RmvMarker()};
+
+    function toggleFullScreen() {
+
+      var elmt_to_fullscreen = document.getElementById("mapid");
+
+        if ((document.fullScreenElement && document.fullScreenElement !== null) ||
+          (!document.mozFullScreen && !document.webkitIsFullScreen)) {
+
+          if (elmt_to_fullscreen.requestFullScreen) {
+              elmt_to_fullscreen.requestFullScreen();
+          }
+          else if (elmt_to_fullscreen.mozRequestFullScreen) {
+              elmt_to_fullscreen.mozRequestFullScreen();
+          }
+          else if (elmt_to_fullscreen.webkitRequestFullScreen) {
+              elmt_to_fullscreen.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
+          }
+        }
+      else {
+
+          if (document.cancelFullScreen) {
+              document.cancelFullScreen();
+          }
+          else if (document.mozCancelFullScreen) {
+              document.mozCancelFullScreen();
+          }
+          else if (document.webkitCancelFullScreen) {
+              document.webkitCancelFullScreen();
+          }
+        }
+
+    }
+
+    function RmvMarker(e) {
+
+      GlobalLayer.clearLayers();
+    }
+
+    function AddMarker(e) {
+
+      // Get back the dblclick.latlng position
+      // Add a new layer with the point with the position returned
+      // Add the layer on the map
+      var markerToAdd = L.marker(e.latlng).addTo(mymap);
+      GlobalLayer.addLayer(markerToAdd);
+
+    }
+
+
+    mymap.on('click', AddMarker);
   </script>
 @endsection
