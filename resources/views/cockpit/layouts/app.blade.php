@@ -11,6 +11,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <!--script src="https://js.pusher.com/4.3/pusher.min.js"></script-->
     <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js" integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA==" crossorigin=""></script>
@@ -21,7 +22,20 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="{{ asset('css/cockpit.css') }}" rel="stylesheet">
+    @if (!Auth::check())
+      <!-- Default no auth -->
+      <link href="{{ asset('css/cockpit_light.css') }}" rel="stylesheet">
+    @elseif (Auth::user()->night_mode == 0)
+      <!-- Mode auto -->
+      <link href="{{ asset('css/cockpit_light.css') }}" rel="stylesheet">
+    @elseif (Auth::user()->night_mode == 1)
+      <!-- Mode on -->
+      <link href="{{ asset('css/cockpit_dark.css') }}" rel="stylesheet">
+
+    @else
+      <!-- Mode off -->
+      <link href="{{ asset('css/cockpit_light.css') }}" rel="stylesheet">
+    @endif
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==" crossorigin=""/>

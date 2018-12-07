@@ -22,6 +22,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::name('cockpit.')->group(function(){
   Route::prefix('cockpit')->group(function(){
     Route::get('', 'CockpitController@index')->name('index');
+    Route::get('changeTheme', 'CockpitController@changeTheme')->name('changeTheme');
   });
 });
 

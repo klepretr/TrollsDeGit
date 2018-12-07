@@ -62,34 +62,40 @@
           </div>
         </div>
         <div class="fixed-action-btn direction-top" style="bottom: 45px; right: 24px;">
-          <a class="btn-floating btn-large red">
-            <i class="material-icons">mode_edit</i>
+          <a class="btn-floating btn-large">
+            <i class="tiny material-icons">chat</i>
           </a>
           <ul>
             <li>
-              <a class="btn-floating red" style="opacity: 0; transform: scale(0.4) translateY(40px) translateX(0px);">
-                <i class="material-icons">insert_chart</i>
-              </a>
-            </li>
-            <li>
-              <a class="btn-floating yellow darken-1" style="opacity: 0; transform: scale(0.4) translateY(40px) translateX(0px);">
-                <i class="material-icons">format_quote</i>
-              </a>
-            </li>
-            <li>
               <a class="btn-floating green" style="opacity: 0; transform: scale(0.4) translateY(40px) translateX(0px);">
-                <i class="material-icons">publish</i>
+                <i class="material-icons">settings</i>
               </a>
             </li>
             <li>
-              <a class="btn-floating blue" style="opacity: 0; transform: scale(0.4) translateY(40px) translateX(0px);">
-                <i class="material-icons">attach_file</i>
-              </a>
+              @if (!Auth::check())
+                <!-- Default no auth -->
+                <a id="night_mode_btn" class="btn-floating blue" value="1" style="opacity: 0; transform: scale(0.4) translateY(40px) translateX(0px);">
+                  <i class="material-icons">brightness_2</i>
+                </a>
+              @elseif (Auth::user()->night_mode == 0)
+                <!-- Mode auto -->
+                <a id="night_mode_btn" class="btn-floating blue" value="1" style="opacity: 0; transform: scale(0.4) translateY(40px) translateX(0px);">
+                  <i class="material-icons">brightness_2</i>
+                </a>
+              @elseif (Auth::user()->night_mode == 1)
+                <!-- Mode on -->
+                <a id="night_mode_btn" class="btn-floating blue" value="2" style="opacity: 0; transform: scale(0.4) translateY(40px) translateX(0px);">
+                  <i class="material-icons">brightness_low</i>
+                </a>
+              @else
+                <!-- Mode off -->
+                <a id="night_mode_btn" class="btn-floating blue" value="0"  style="opacity: 0; transform: scale(0.4) translateY(40px) translateX(0px);">
+                  <i class="material-icons">brightness_auto</i>
+                </a>
+              @endif
+
             </li>
           </ul>
-        </div>
-        <div class="floating-bottom-right">
-          <a class="btn-floating btn-large waves-effect waves-light right pulse" type="submit" name="action"><i class="tiny material-icons">chat</i></a>
         </div>
       </div>
     </div>
@@ -168,7 +174,12 @@
     mymap.on('click', AddMarker);
 
     $(document).ready(function(){
-      $('.fixed-action-btn').floatingActionButton();
+      M.AutoInit();
+      $('#night_mode_btn').on('click', function(){
+        $.get('/cockpit/changeTheme?theme='+$('#night_mode_btn').attr('value'),function(data){
+          window.location.reload()
+        });
+      });
     });
   </script>
 @endsection
