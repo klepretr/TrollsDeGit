@@ -35,7 +35,8 @@ class DashboardController extends Controller
     }
     public function gestionMateriel()
     {
-      return view('dashboard.materiel');
+      $materiels=Stuff::get();
+      return view('dashboard.materiel',["materiels"=>$materiels]);
     }
     public function createMission()
     {
