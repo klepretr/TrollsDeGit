@@ -12,9 +12,9 @@
 		<div class="container-list">
             @foreach($materiels as $materiel)
 
-        <li class="container-list-item"   data-pos="{{$loop->iteration}}">
-                <h3 class="container-list-item-title"> {{$materiel->name }}</h3>
-                <a class="container-list-item-button" href="#">Edit</a>
+                <li class="container-list-item" data_name="{{$materiel->name}}" data_description="{{$materiel->description}}" data_state="{{$materiel->state}}" data_type="{{$materiel->type}}"  data-pos="{{$loop->iteration}}">
+                    <h3 class="container-list-item-title"> {{$materiel->name }}</h3>
+                    <a class="container-list-item-button" href="#">Edit</a>
                 </li>
 
             @endforeach
