@@ -31,7 +31,7 @@ class Mission extends Model
 
     public function stuffs()
     {
-    	return $this->belongsToMany(App\Models\Stuff::class);
+    	return $this->belongsToMany(Stuff::class);
     }
 
     public function report()
@@ -41,6 +41,6 @@ class Mission extends Model
 
     public function tasks()
     {
-    	return $this->hasMany(App\Models\MissionsTask::class);
+    	return $this->hasMany(MissionsTask::class);
     }
 }

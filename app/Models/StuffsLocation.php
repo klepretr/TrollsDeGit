@@ -26,6 +26,6 @@ class StuffsLocation extends Model
 
     public function stuff()
     {
-    	return $this->belongsTo(App\Models\Stuff::class);
+    	return $this->belongsTo(Stuff::class);
     }
 }

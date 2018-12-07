@@ -26,12 +26,12 @@ class File extends Model
 
     public function report()
     {
-    	return $this->belongsTo(App\Models\Report::class);
+    	return $this->belongsTo(Report::class);
     }
 
     public function user()
     {
-    	return $this->belongsTo(App\Models\User::class);
+    	return $this->belongsTo(User::class);
     }
 
 }
