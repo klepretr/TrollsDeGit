@@ -15,8 +15,7 @@ class CreateStuffsLocationsTable extends Migration
     {
         Schema::create('stuffs_locations', function (Blueprint $table) {
             $table->increments('id');
-            $table->float('latitude');
-            $table->float('longitude');
+            $table->integer('batiment_number');
             $table->integer('stuff_id')->unsigned()->references('id')->on('stuffs')->onDelete('cascade');
             $table->timestamps();
         });

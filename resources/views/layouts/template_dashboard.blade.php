@@ -48,7 +48,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">DASHBOARD</a>
+                <a class="navbar-brand" href="{{ route('dashboard.index') }}">DASHBOARD</a>
                 </div>
                 <div id="navbar" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-user navbar-right" style="height:100%">
