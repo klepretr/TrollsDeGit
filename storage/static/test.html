@@ -22,6 +22,8 @@
 
 	<a class="btn-floating btn-large waves-effect waves-light red" id="FullScreenButton"><i class="material-icons">fullscreen</i></a>
 
+	<a class="btn-floating btn-large waves-effect waves-light red" id="TrashButton"><i class="material-icons">delete</i></a>
+
 	 <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
@@ -44,6 +46,8 @@
 
 			var marker = L.marker([47.09, 2.4]).addTo(mymap);
 
+			var GlobalLayer = L.layerGroup([marker]).addTo(mymap)
+
 			var circleMarker = L.circle([47.09, 2.4], {
 				color: 'red',
 				fillColor: '#f03',
@@ -52,6 +56,8 @@
 			}).addTo(mymap);
 
 			document.getElementById("FullScreenButton").onclick = function(){toggleFullScreen()};
+
+			document.getElementById("TrashButton").onclick = function(){RmvMarker()};
 
 			function toggleFullScreen() {
 
@@ -85,15 +91,23 @@
 
 			}
 
+			function RmvMarker(e) {
+
+				GlobalLayer.clearLayers();
+			}
+
 			function AddMarker(e) {
 				
 				// Get back the dblclick.latlng position
-				// Add the new marker with the position returned
-				L.marker(e.latlng).addTo(mymap);
+				// Add a new layer with the point with the position returned
+				// Add the layer on the map
+				var markerToAdd = L.marker(e.latlng).addTo(mymap);
+				GlobalLayer.addLayer(markerToAdd);
 
 			}
 
-			mymap.on('click', AddMarker)
+			
+			mymap.on('click', AddMarker);
 
     	</script>
 
