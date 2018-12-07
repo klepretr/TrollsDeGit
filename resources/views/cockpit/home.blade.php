@@ -19,6 +19,9 @@
       @if(!empty($alert))<nav id="breaking_news"><div class="breaking_news_1">{{ $alert->content }}</div></nav>@endif
     </header>
 
+    <span id="test"></span>
+    <span id="demo"></span>
+
     <div class="body">
       <div class="card-body">
         <div class="col s12 m7">
@@ -181,5 +184,33 @@
         });
       });
     });
+
+    var x = document.getElementById("test");
+    if (x.addEventListener) {
+        x.addEventListener("click", myFunction);
+    } else if (x.attachEvent) {
+        x.attachEvent("onclick", myFunction);
+    }
+
+    if (window.addEventListener) {
+        window.addEventListener("scroll", myFunction);
+    } else if (x.attachEvent) {
+        window.attachEvent("onscroll", myFunction);
+    }
+
+    function myFunction() {
+        window.alert("This is a test");
+        clearTimeout();
+        setTimeout(sendAlert, 30000);
+    }
+
+    function sendAlert() {
+        var audio = new Audio("sound/alarm.wav");
+        audio.play();
+        window.alert("Warning: you did not have responded for 30 secons");
+        setTimeout(sendAlert, 30000);
+    }
+
+    setTimeout(sendAlert, 30000);
   </script>
 @endsection
