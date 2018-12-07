@@ -37,6 +37,8 @@ Route::name('dashboard.')->middleware('auth')->group(function(){
     Route::get('createMission', 'DashboardController@createMission')->name('createMission');
     Route::post('createMissionAction', 'DashboardController@createMissionAction')->name('createMissionAction');
     Route::get('editstuff/{id}', 'DashboardController@editstuff')->name('editstuff');
+    Route::post('editstuffAction', 'DashboardController@editstuffAction')->name('editstuffAction');
+
 
   });
 });
