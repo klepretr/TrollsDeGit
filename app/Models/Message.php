@@ -26,11 +26,11 @@ class Message extends Model
 
     public function author()
     {
-    	return $this->belongsTo(User::class, 'author_id');
+    	return $this->belongsTo('App\Models\User', 'author_id');
     }
 
     public function receiver()
     {
-    	return $this->belongsTo(User::class, 'receiver_id');
+    	return $this->belongsTo('App\Models\User', 'receiver_id');
     }
 }

@@ -54,19 +54,24 @@
                 </div>
                 <div id="navbar" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-user navbar-right" style="height:100%">
-                    <li style="height:50px;">
-                        <form style="height:100%;display:flex;align-items:center;"method="post" action="{{ route('dashboard.changeTheme') }}">
-                            @csrf
-                            <select name="theme" style="margin-right:10px;">
-                                <option value="0" {{ Auth::user()->night_mode == 0 ? 'selected' : '' }}>Mode nuit automatique</option>
-                                <option value="1" {{ Auth::user()->night_mode == 1 ? 'selected' : '' }}>Mode nuit on</option>
-                                <option value="2" {{ Auth::user()->night_mode == 2 ? 'selected' : '' }}>Mode nuit off</option>
-                            </select>
-                            <input type="submit" value="Changer" />
-                        </form>
+                    @auth
+                        <li style="height:50px;">
+                            <form style="height:100%;display:flex;align-items:center;"method="post" action="{{ route('dashboard.changeTheme') }}">
+                                @csrf
+                                <select name="theme" style="margin-right:10px;">
+                                    <option value="0" {{ Auth::user()->night_mode == 0 ? 'selected' : '' }}>Mode nuit automatique</option>
+                                    <option value="1" {{ Auth::user()->night_mode == 1 ? 'selected' : '' }}>Mode nuit on</option>
+                                    <option value="2" {{ Auth::user()->night_mode == 2 ? 'selected' : '' }}>Mode nuit off</option>
+                                </select>
+                                <input type="submit" value="Changer" />
+                            </form>
+                        </li>
+                    @endauth
 
-                    <li><a href="#"><span class="glyphicon glyphicon-user"></span>{{ Auth::user()->name }}</a></li>
-                    <li><a class="dropdown-item" href="{{ route('logout') }}"
+                    <li><a href="#"><span class="glyphicon glyphicon-user"></span>@auth {{ Auth::user()->name }} @else Invité @endauth</a></li>
+                    @auth<li><a href="{{ route('dashboard.myAlerts') }}"><span class="glyphicon glyphicon-user"></span>Mes messages</a></li>@endauth
+                    @auth
+                        <li>    <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
@@ -74,7 +79,9 @@
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
-                                    </form></li>
+                                    </form>
+                        </li>
+                    @endauth
                 </ul>
                 </div><!--/.nav-collapse -->
             </div>
@@ -82,12 +89,12 @@
         <nav class="navbar-primary">
         <ul class="navbar-primary-menu">
             <li>
-
                 <a href="{{ route('dashboard.gestionAgent')}}"><span class="glyphicon glyphicon-list-alt"></span><span class="nav-label">Gestion Agent</span></a>
                 <a href="{{ route('dashboard.gestionMateriel')}}"><span class="glyphicon glyphicon-list-alt"></span><span class="nav-label">Gestion Matériel</span></a>
-                <a href="{{ route('dashboard.registerToken') }}"><span class="glyphicon glyphicon-list-alt"></span><span class="nav-label">Génération token d'accès</span></a>
-                <a href="createMission"><span class="glyphicon glyphicon-list-alt"></span><span class="nav-label">Creation Mission</span></a>
-                
+                @auth
+                    <a href="{{ route('dashboard.registerToken') }}"><span class="glyphicon glyphicon-list-alt"></span><span class="nav-label">Génération token d'accès</span></a>
+                @endauth
+                <a href="{{ route('dashboard.alerts') }}"><span class="glyphicon glyphicon-list-alt"></span><span class="nav-label">Message d'alerte</span></a>
             </li>
         </ul>
         </nav>
