@@ -15,6 +15,9 @@ for (var i = 0; i < document.getElementsByClassName("container-list-item").lengt
 		document.getElementsByClassName("container-select_modal")[0].style.display = "block";
 		document.getElementsByClassName("container-select_modal")[0].style.top = ( select_modal_offset - document.getElementsByClassName("container-list")[0].scrollTop) + "px";
 		document.getElementsByClassName("container-select_modal_info")[0].innerHTML="Name : "+this.getAttribute("data_name")+"<br>Description : "+this.getAttribute("data_description")+"<br>Type : "+this.getAttribute("data_type")+"<br> State : "+this.getAttribute("data_state");
+	
+		// WEBGL trigger
+		highlightBatiment(JSON.parse(this.getAttribute("data_location"))[0]["batiment_number"]);
 	}
 }
 

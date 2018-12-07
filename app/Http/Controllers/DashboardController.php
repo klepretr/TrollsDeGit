@@ -12,6 +12,9 @@ use Auth;
 use DB;
 use App\Models\User;
 use App\Models\Stuff;
+use App\Models\StuffsLocation;
+
+
 
 
 
@@ -83,7 +86,10 @@ class DashboardController extends Controller
     public function gestionMateriel()
     {
       $materiels=Stuff::get();
-      $materiel->location=$materiel->location()->batiment_number;
+      foreach($materiels as $materiel){
+        
+        $materiel->location=StuffsLocation::where("stuff_id",$materiel->id)->get();
+      }
       return view('dashboard.materiel',["materiels"=>$materiels]);
     }
     public function createMission()
