@@ -38,6 +38,8 @@ Route::name('dashboard.')->middleware('auth')->group(function(){
     Route::post('createMissionAction', 'DashboardController@createMissionAction')->name('createMissionAction');
     Route::get('editstuff/{id}', 'DashboardController@editstuff')->name('editstuff');
     Route::post('editstuffAction', 'DashboardController@editstuffAction')->name('editstuffAction');
+    Route::get('editagent/{id}', 'DashboardController@editagent')->name('editagent');
+    Route::post('editagentAction', 'DashboardController@editagentAction')->name('editagentAction');
 
 
   });

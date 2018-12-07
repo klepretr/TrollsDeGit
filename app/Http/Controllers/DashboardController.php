@@ -129,4 +129,31 @@ class DashboardController extends Controller
       $materiel->save();
       return redirect(route("dashboard.gestionMateriel"));
     }
+
+    public function editagent($id)
+    {
+      $agent=User::where('id',$id)->first();
+      return view('dashboard.editagent',["agent"=>$agent]);
+    }
+    public function editagentAction(Request $request)
+    {
+      $firstname=$request->input('firstname');
+      $lastname=$request->input('lastname');
+      $gender=$request->input('gender');
+      $email=$request->input('email');
+      $phone_number=$request->input('phone_number');
+
+      $id=$request->input('id');
+
+      $agent=User::find($id);
+      $agent->firstname=$firstname;
+      $agent->lastname=$lastname;
+      $agent->gender=$gender;
+      $agent->email=$email;
+      $agent->phone_number=$phone_number;
+
+      $agent->save();
+      return redirect(route("dashboard.gestionAgent"));
+    }
+
 }
