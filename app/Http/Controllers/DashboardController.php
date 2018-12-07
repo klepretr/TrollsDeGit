@@ -100,7 +100,28 @@ class DashboardController extends Controller
       $name=$request->input('mission_name');
       $date=$request->input('mission_date');
 
-     dd($request);
+     //dd($request);
+    }
+    public function editstuff($id)
+    {
+      $materiel=Stuff::where('id',$id)->first();
+      return view('dashboard.editmateriel',["materiel"=>$materiel]);
     }
 
+    public function editstuffAction(Request $request)
+    {
+      $name=$request->input('name');
+      $description=$request->input('description');
+      $type=$request->input('type');
+      $state=$request->input('state');
+      $id=$request->input('id');
+
+      $materiel=Stuff::find($id);
+      $materiel->name=$name;
+      $materiel->description=$description;
+      $materiel->type=$type;
+      $materiel->state=$state;
+      $materiel->save();
+      return redirect(route("dashboard.gestionMateriel"));
+    }
 }
