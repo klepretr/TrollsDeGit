@@ -12,7 +12,7 @@
         <li class="container-list-item" data_firstname="{{$agent->firstname}}" data_lastname="{{$agent->lastname}}" 
             data_email="{{$agent->email}}" data_phone_number="{{$agent->phone_number}}"  data-pos="{{$loop->iteration}}">
                 <h3 class="container-list-item-title"> {{$agent->name }}</h3>
-                <a class="container-list-item-button" href="#">Edit</a>
+                <a class="container-list-item-button" href="{{route('dashboard.editagent', ['id'=>$agent->id])}}">Edit</a>
                 </li>
 
             @endforeach

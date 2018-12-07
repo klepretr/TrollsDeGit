@@ -96,4 +96,53 @@ class DashboardController extends Controller
     }
 
 
+    public function editstuff($id)
+    {
+      $materiel=Stuff::where('id',$id)->first();
+      return view('dashboard.editmateriel',["materiel"=>$materiel]);
+    }
+
+    public function editstuffAction(Request $request)
+    {
+      $name=$request->input('name');
+      $description=$request->input('description');
+      $type=$request->input('type');
+      $state=$request->input('state');
+      $id=$request->input('id');
+
+      $materiel=Stuff::find($id);
+      $materiel->name=$name;
+      $materiel->description=$description;
+      $materiel->type=$type;
+      $materiel->state=$state;
+      $materiel->save();
+      return redirect(route("dashboard.gestionMateriel"));
+    }
+
+    public function editagent($id)
+    {
+      $agent=User::where('id',$id)->first();
+      return view('dashboard.editagent',["agent"=>$agent]);
+    }
+    public function editagentAction(Request $request)
+    {
+      $firstname=$request->input('firstname');
+      $lastname=$request->input('lastname');
+      $gender=$request->input('gender');
+      $email=$request->input('email');
+      $phone_number=$request->input('phone_number');
+
+      $id=$request->input('id');
+
+      $agent=User::find($id);
+      $agent->firstname=$firstname;
+      $agent->lastname=$lastname;
+      $agent->gender=$gender;
+      $agent->email=$email;
+      $agent->phone_number=$phone_number;
+
+      $agent->save();
+      return redirect(route("dashboard.gestionAgent"));
+    }
+
 }
