@@ -28,6 +28,23 @@ Route::name('cockpit.')->group(function(){
 Route::name('dashboard.')->group(function(){
   Route::prefix('dashboard')->group(function(){
     Route::get('', 'DashboardController@index')->name('index');
+    Route::get('generateTokenRegistration', 'DashboardController@registerToken')->name('registerToken');
+    Route::post('generateTokenRegistration', 'DashboardController@storeToken')->name('storeToken');
+    Route::post('changeTheme', 'DashboardController@changeTheme')->name('changeTheme');
+    Route::post('storeAlert', 'AlertsController@storeAlert')->name('storeAlert');
+    Route::get('alerts', 'AlertsController@alerts')->name('alerts');
+    Route::get('myAlerts', 'AlertsController@showMyAlerts')->name('myAlerts');
+    Route::post('sendAlert', 'AlertsController@sendAlert')->name('sendAlert');
+  });
+});
+
+
+Route::name('api.')->group(function(){
+  Route::prefix('api')->group(function(){
+    Route::get('missionfuture', 'MissionController@getAllFutureMission')
+        ->name('missionfuture');
+    Route::get('missionpast', 'MissionController@getAllPastMission')
+        ->name('missionpast');
   });
 });
 
