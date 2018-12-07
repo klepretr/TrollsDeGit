@@ -32,6 +32,7 @@ Route::name('dashboard.')->group(function(){
     Route::get('gestionAgent', 'DashboardController@gestionAgent')->name('gestionAgent');
     Route::get('gestionMateriel', 'DashboardController@gestionMateriel')->name('gestionMateriel');
     Route::get('createMission', 'DashboardController@createMission')->name('createMission');
+    Route::post('createMissionAction', 'DashboardController@createMissionAction')->name('createMissionAction');
 
   });
 });

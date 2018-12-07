@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Mission;
 
 use App\Models\User;
+use App\Models\Stuff;
+
 
 
 class DashboardController extends Controller
@@ -36,6 +38,18 @@ class DashboardController extends Controller
     }
     public function createMission()
     {
-      return view('dashboard.new_mission');
+      $agents=User::where("role",User::AGENT)->get();
+      $materiels=Stuff::get();
+
+      return view('dashboard.new_mission',["agents"=>$agents,"materiels"=>$materiels]);
     }
+
+    public function createMissionAction(Request $request)
+    {
+      $name=$request->input('mission_name');
+      $date=$request->input('mission_date');
+
+     dd($request);
+    }
+    
 }
