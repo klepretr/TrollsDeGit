@@ -85,6 +85,11 @@
                     {{ config('app.name') }}
                 </div>
 
+                <a href="{{route('cockpit.index')}}"><button>Cockpit</button></a>
+                <a href="{{route('dashboard.index')}}"><button>Dashboard</button></a>
+
+
+
             </div>
         </div>
     </body>
