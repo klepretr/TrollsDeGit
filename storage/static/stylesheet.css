@@ -1,0 +1,14 @@
+#mapid {
+	position: absolute;
+	height:400px;
+	width: 800px;
+	z-index: 1;
+}
+
+#FullScreenButton {
+	position: absolute;
+	left: 50px;
+	top:10px;
+	z-index: 2;
+}
+
