@@ -31,16 +31,15 @@ Route::name('dashboard.')->middleware('auth')->group(function(){
     Route::get('generateTokenRegistration', 'DashboardController@registerToken')->name('registerToken');
     Route::post('generateTokenRegistration', 'DashboardController@storeToken')->name('storeToken');
     Route::post('changeTheme', 'DashboardController@changeTheme')->name('changeTheme');
+    Route::get('report/{id}', 'DashboardController@report')->name('report');
+    Route::get('gestionAgent', 'DashboardController@gestionAgent')->name('gestionAgent');
+    Route::get('gestionMateriel', 'DashboardController@gestionMateriel')->name('gestionMateriel');
+    Route::get('createMission', 'DashboardController@createMission')->name('createMission');
+    Route::post('createMissionAction', 'DashboardController@createMissionAction')->name('createMissionAction');
+
   });
 });
 
 
-Route::name('api.')->group(function(){
-  Route::prefix('api')->group(function(){
-    Route::get('missionfuture', 'MissionController@getAllFutureMission')
-        ->name('missionfuture');
-    Route::get('missionpast', 'MissionController@getAllPastMission')
-        ->name('missionpast');
-  });
-});
+
 
