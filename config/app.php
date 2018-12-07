@@ -226,4 +226,8 @@ return [
 
     ],
 
+    'cockpit' => [
+      'name' => 'Cockpit',
+    ],
+
 ];
