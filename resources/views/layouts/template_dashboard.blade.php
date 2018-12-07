@@ -53,7 +53,15 @@
                 <div id="navbar" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-user navbar-right">
                     <li><a href="#"><span class="glyphicon glyphicon-user"></span> UserNAME DUR </a></li>
-                    <li><a href="#about"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                    <li><a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form></li>
                 </ul>
                 </div><!--/.nav-collapse -->
             </div>
@@ -63,10 +71,16 @@
             <li>
                 <a href="#"><span class="glyphicon glyphicon-list-alt"></span><span class="nav-label">Gestion Agent</span></a>
                 <a href="#"><span class="glyphicon glyphicon-list-alt"></span><span class="nav-label">Gestion Matériel</span></a>
+                <a href="{{ route('dashboard.registerToken') }}"><span class="glyphicon glyphicon-list-alt"></span><span class="nav-label">Génération token d'accès</span></a>
             </li>
         </ul>
         </nav>
         <div class="main-content">
+                @if (session('status'))
+                     <div class="alert alert-success" role="alert">
+                        {{ session('status') }}
+                    </div>
+                @endif
             @yield('content')
         </div>
 

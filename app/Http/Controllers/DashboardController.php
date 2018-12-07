@@ -29,8 +29,9 @@ class DashboardController extends Controller
         ]);
 
         if($validation) {
-        	Registration::create(['email'=>$request->email,  'token'=>$request->role.$request->token_registration]);
-        	return redirect(route('dashboard.index'));
+            $token = $request->role.$request->token_registration;
+        	Registration::create(['email'=>$request->email,  'token'=>$token]);
+        	return redirect(route('dashboard.index'))->with('status', 'Envoyer à '.$request->email.' le token d inscription suivant : '.$token);
         } else {
         	return redirect(route('dashboard.registerToken'));
         }

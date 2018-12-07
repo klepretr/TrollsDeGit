@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Validation\Rule;
 use App\Models\Registration;
+use Auth;
 
 class RegisterController extends Controller
 {
