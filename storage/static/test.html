@@ -84,6 +84,18 @@
 			  	}
 
 			}
+			qsdfsqdf
+			
+
+			function AddMarker(e) {
+				
+				// Get back the dblclick.latlng position
+				// Add the new marker with the position returned
+				L.marker(e.latlng).addTo(mymap);
+
+			}
+
+			mymap.on('click', AddMarker)
 
     	</script>
 
