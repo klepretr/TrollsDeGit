@@ -30,7 +30,8 @@ class DashboardController extends Controller
 
     public function gestionAgent()
     {
-      return view('dashboard.agent');
+      $agents=User::where("role", User::AGENT)->get();
+      return view('dashboard.agent',["agents"=>$agents]);
     }
     public function gestionMateriel()
     {
@@ -51,5 +52,7 @@ class DashboardController extends Controller
 
      dd($request);
     }
+
+
     
 }

@@ -1,24 +1,4 @@
-// Entities
-var entities = [{"name": "John Doe", "desc": "Currently on mission", "position": [61.5, 48.3, -2.5]},
-{"name": "De Izara", "desc": "Definitively on another planet", "position": [61.5, 58.3, -2.5]},
-{"name": "First Test", "desc": "Pringles", "position": [61.5, 58.3, -2.5]},
-{"name": "Lorem Ipsum", "desc": "Lorem ipsum dolor sit amet", "position": [69.5, 58.3, -2.5]},
-{"name": "Badass Rover", "desc": "4x4 rover", "position": [67.5, 58.3, -2.5]},
-{"name": "Second Test", "desc": "Lipton", "position": [67.5, 58.3, -2.5]},
-{"name": "Twix", "desc": "Mars", "position": [67.5, 58.3, -2.5]},
-{"name": "Insa glisse", "desc": "Rien a Foutre", "position": [67.5, 58.3, -2.5]},
-{"name": "ON MERGE", "desc": "Encore un test", "position": [67.5, 58.3, -2.5]}];
 
-// Init list
-var output = "";
-for (var i = 0; i < entities.length; i++){
-	output += '<li class="container-list-item" data-id="' + i + '" data-pos="' + i + '">';
-		output += '<h3 class="container-list-item-title">' + entities[i]["name"] + '</h3>';
-		output += '<span class="container-list-item-subline">' + entities[i]["desc"] + '</span>';
-		output += '<a class="container-list-item-button" href="#">Edit</a>';
-	output += '</li>';
-}
-document.getElementsByClassName("container-list")[0].innerHTML = output;
 
 // List items listeners
 var select_modal_offset = 0;
@@ -31,9 +11,10 @@ for (var i = 0; i < document.getElementsByClassName("container-list-item").lengt
 		this.classList += " container-list-item--active";
 	
 		// Modal display
-		select_modal_offset = (59 * this.getAttribute("data-pos"));
+		select_modal_offset = (this.offsetHeight * this.getAttribute("data-pos"));
 		document.getElementsByClassName("container-select_modal")[0].style.display = "block";
-		document.getElementsByClassName("container-select_modal")[0].style.top = (53 + select_modal_offset - document.getElementsByClassName("container-list")[0].scrollTop) + "px";
+		document.getElementsByClassName("container-select_modal")[0].style.top = ( select_modal_offset - document.getElementsByClassName("container-list")[0].scrollTop) + "px";
+		document.getElementsByClassName("container-select_modal_info")[0].innerHTML="Firstname : "+this.getAttribute("data_firstname")+"<br>Lastname : "+this.getAttribute("data_lastname")+"<br>Email : "+this.getAttribute("data_email")+"<br> Phone Number : "+this.getAttribute("data_phone_number");
 	}
 }
 
@@ -48,9 +29,9 @@ function search_list(needle){
 	}
 
 	// Search
-	var pos = 0;
+	var pos = 1;
 	for (var i = 0; i < document.getElementsByClassName("container-list-item").length; i++){
-		if (needle == "" || entities[i]["name"].toLowerCase().indexOf(needle) != -1 || entities[i]["desc"].toLowerCase().indexOf(needle) != -1){
+		if (needle == "" || document.getElementsByClassName("container-list-item-title")[i].innerHTML.toLowerCase().indexOf(needle) != -1 ){
 			document.getElementsByClassName("container-list-item")[i].style.display = "block";
 			document.getElementsByClassName("container-list-item")[i].setAttribute("data-pos", pos);
 			pos ++;
@@ -74,7 +55,7 @@ document.getElementsByClassName("container-canvas")[0].onclick = function(event)
 	// Log click
 	var x = event.x - this.offsetLeft;
 	var y = event.y - this.offsetTop;
-	console.log(x + " " + y);
+	//console.log(x + " " + y);
 
 	// Unselect
 	document.getElementsByClassName("container-select_modal")[0].style.display = "none";
