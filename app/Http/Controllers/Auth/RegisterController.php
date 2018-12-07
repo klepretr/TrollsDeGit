@@ -30,7 +30,16 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected function redirectTo()
+    {
+
+        if(Auth::user()->role==Auth::user()::SUPERVISEUR or Auth::user()->role==Auth::user()::ADMIN){
+            return route('dashboard.index');
+        } elseif(Auth::user()->role==Auth::user()::AGENT){
+            return route('cockpit.index');
+        }   
+
+    }
 
     /**
      * Create a new controller instance.
@@ -79,7 +88,7 @@ class RegisterController extends Controller
                 'lastname'=>$data['lastname'],
                 'gender'=>$data['gender'],
                 'phone_number'=>$data['phone_number'],
-                'role'=>1,
+                'role'=>substr($data['token_registration'], 0, 1),
                 'age'=>$data['age'],
                 'password' => Hash::make($data['password']),
             ]);

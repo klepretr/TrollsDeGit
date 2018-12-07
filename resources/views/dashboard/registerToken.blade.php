@@ -27,7 +27,20 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Token') }}</label>
+                            <label for="role" class="col-md-4 col-form-label text-md-right">{{ __('Role') }}</label>
+
+                            <div class="col-md-6">
+                                <select id="role" class="form-control{{ $errors->has('role') ? ' is-invalid' : '' }}" name="role" >
+                                    <option value="0">Administrateur </option>
+                                    <option value="1">Superviseur </option>
+                                    <option value="2">Agent </option>
+                                </select>
+
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="token" class="col-md-4 col-form-label text-md-right">{{ __('Token') }}</label>
 
                             <div class="col-md-6">
                                 <input id="token" type="text" class="form-control{{ $errors->has('token_registration') ? ' is-invalid' : '' }}" name="token_registration" value="{{ str_random(10) }}" required readonly>

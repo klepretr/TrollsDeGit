@@ -29,7 +29,7 @@ class DashboardController extends Controller
         ]);
 
         if($validation) {
-        	Registration::create(['email'=>$request->email, 'token'=>$request->token_registration]);
+        	Registration::create(['email'=>$request->email,  'token'=>$request->role.$request->token_registration]);
         	return redirect(route('dashboard.index'));
         } else {
         	return redirect(route('dashboard.registerToken'));
