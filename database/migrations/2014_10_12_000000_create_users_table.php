@@ -25,6 +25,7 @@ class CreateUsersTable extends Migration
             $table->boolean('gender');
             $table->integer('role')->unsigned();
             $table->string('phone_number', 36)->nullable();
+            $table->integer('night_mode')->unsigned()->nullable()->default(0);
             $table->rememberToken();
             $table->timestamps();
         });
