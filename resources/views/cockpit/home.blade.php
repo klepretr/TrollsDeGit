@@ -16,7 +16,7 @@
           </ul>
         </div>
       </nav>
-      <nav id="breaking_news"><div class="breaking_news_1">Message d'alerte de la plus haute importance</div></nav>
+      @if(!empty($alert))<nav id="breaking_news"><div class="breaking_news_1">{{ $alert->content }}</div></nav>@endif
     </header>
 
     <div class="card-body">
