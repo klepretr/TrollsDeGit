@@ -1,0 +1,147 @@
+body{
+	margin: 0;
+	font-family: 'Open Sans', sans-serif;
+}
+
+.container{
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+
+.container-search{
+	position: absolute;
+	top: 0;
+	left: 0;
+	padding: 10px;
+	border-bottom: 1px solid #6a6a6a;
+}
+
+.container-search-input{
+	width: 280px;
+	height: 32px;
+	outline: none;
+	padding: 8px;
+	padding-top: 12px;
+	padding-bottom: 12px;
+	border: 1px solid #9a9a9a;
+	border-radius: 2px;
+	color: #8a8a8a;
+}
+
+.container-search-input:focus{
+	border: 1px solid #6a6a6a;
+}
+
+.container-list{
+	position: absolute;
+	top: 53px;
+	left: 0;
+	bottom: 0;
+	width: 300px;
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+
+.container-list-item{
+	width: 100%;
+	height: 40px;
+	display: block;
+	cursor: pointer;
+	padding: 10px;
+	padding-top: 8px;
+	border-bottom: 1px solid #4a4a4a;
+	color: #4a4a4a;
+	background-color: #f5f5f5;
+}
+
+.container-list-item--active{
+	color: #4fade3;
+	background-color: white;
+}
+
+.container-list-item-title{
+	font-size: 1.15em;
+	margin: 0;
+}
+
+.container-list-item:hover .container-list-item-title{
+	color: #4fade3;
+}
+
+.container-list-item-subline{
+	font-size: 0.8em;
+	margin: 0;
+}
+
+.container-list-item-button{
+	display: none;
+	float: right;
+	padding: 8px;
+	text-decoration: none;
+	outline: none;
+	cursor: pointer;
+	margin-top: -25px;
+	margin-right: 20px;
+	border: 2px solid #aaaaaa;
+	border-radius: 3px;
+	color: #4a4a4a;
+	background-color: #eeeeee;
+}
+
+.container-list-item:hover .container-list-item-button{
+	display: block;
+}
+
+.container-list-item-button:hover{
+	color: #4fade3;
+}
+
+.container-canvas{
+	position: absolute;
+	top: 0;
+	left: 300px;
+	right: 0;
+	bottom: 0;
+	width: 900px;
+	height: 600px;
+	z-index: 998;
+	background-color: green;
+}
+
+.container-select_modal{
+	position: absolute;
+	top: 56px;
+	left: 320px;
+	height: 130px;
+	min-width: 250px;
+	display: none;
+	z-index: 999;
+	padding: 10px;
+	border: 1px solid #8a8a8a;
+	border-radius: 4px;
+	background-color: white;
+}
+
+.container-select_modal:before{
+	content: ' ';
+    height: 0;
+    position: absolute;
+    width: 0;
+    left: -40px;
+    border: 20px solid transparent;
+    border-right-color: white;
+}
+
+.container-select_modal-cross{
+	position: absolute;
+	top: 8px;
+	right: 8px;
+	height: 12px;
+	cursor: pointer;
+	opacity: 0.6;
+}
+
+.container-select_modal-cross:hover{
+	opacity: 0.8;
+}
