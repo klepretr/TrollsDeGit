@@ -94,6 +94,7 @@
                 @auth
                     <a href="{{ route('dashboard.registerToken') }}"><span class="glyphicon glyphicon-list-alt"></span><span class="nav-label">Génération token d'accès</span></a>
                 @endauth
+                <a href="createMission"><span class="glyphicon glyphicon-list-alt"></span><span class="nav-label">Creation Mission</span></a>
                 <a href="{{ route('dashboard.alerts') }}"><span class="glyphicon glyphicon-list-alt"></span><span class="nav-label">Message d'alerte</span></a>
             </li>
         </ul>

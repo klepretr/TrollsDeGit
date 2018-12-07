@@ -57,7 +57,7 @@
                     @if(count($alerts))
                         @foreach($alerts as $alert)
                             <p>{{ $alert->content }}</p>
-                            <i>{{ $alert->created_at->diffForHumans() }} par {{ $alert->author_id }}</i>
+                            <i>{{ $alert->created_at->diffForHumans() }} par {{ $alert->author->name }}</i>
                             <hr />
                         @endforeach
                     @else

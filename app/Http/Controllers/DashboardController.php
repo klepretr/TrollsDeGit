@@ -23,6 +23,7 @@ class DashboardController extends Controller
     //
     public function index()
     {
+        $this->middleware('auth');
       $missions_past = Mission::where('end_date','<',now())->limit(3)->orderBy('id', 'desc')->get();
       $missions_future= Mission::where('start_date','>=',now())->limit(3)->orderBy('id', 'desc')->get();
 
@@ -31,6 +32,7 @@ class DashboardController extends Controller
 
     public function report($id)
     {
+        $this->middleware('auth');
       $mission= Mission::where('id','=',$id)->first();
       return view('dashboard.mission_results',["mission"=>$mission]);
     }
@@ -92,41 +94,6 @@ class DashboardController extends Controller
       }
       return view('dashboard.materiel',["materiels"=>$materiels]);
     }
-    public function createMission()
-    {
-      $agents=User::where("role",User::AGENT)->get();
-      $materiels=Stuff::get();
 
-      return view('dashboard.new_mission',["agents"=>$agents,"materiels"=>$materiels]);
-    }
 
-    public function createMissionAction(Request $request)
-    {
-      $name=$request->input('mission_name');
-      $date=$request->input('mission_date');
-
-     //dd($request);
-    }
-    public function editstuff($id)
-    {
-      $materiel=Stuff::where('id',$id)->first();
-      return view('dashboard.editmateriel',["materiel"=>$materiel]);
-    }
-
-    public function editstuffAction(Request $request)
-    {
-      $name=$request->input('name');
-      $description=$request->input('description');
-      $type=$request->input('type');
-      $state=$request->input('state');
-      $id=$request->input('id');
-
-      $materiel=Stuff::find($id);
-      $materiel->name=$name;
-      $materiel->description=$description;
-      $materiel->type=$type;
-      $materiel->state=$state;
-      $materiel->save();
-      return redirect(route("dashboard.gestionMateriel"));
-    }
 }

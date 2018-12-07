@@ -16,8 +16,8 @@ class CreateMissionsTasksTable extends Migration
         Schema::create('missions_tasks', function (Blueprint $table) {
             $table->increments('id');
             $table->text('description');
-            $table->dateTime('start_date');
-            $table->dateTime('end_date');
+            $table->string('start_date')->nullable();
+            $table->string('end_date')->nullable();
             $table->integer('mission_id')->unsigned()->references('id')->on('missions')->onDelete('cascade');
             $table->timestamps();
         });

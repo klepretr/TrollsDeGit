@@ -9,7 +9,7 @@
             <div class="card">
                 <div class="card-header">Nouvelle Mission</div><br>
                 <div class="card-body">
-                    <form method="POST" action="createMissionAction">
+                    <form method="POST" action="{{ route('dashboard.storeMission') }}">
                        @csrf
                        
                         <table>
@@ -19,7 +19,10 @@
                                 
                                 </tr>
                                 <tr>
-                                    <td colspan="2"><label>Date :</label><input type="date" id="mission_date" name="mission_date"></td>
+                                    <td colspan="2"><label>Date de début :</label><input type="date" id="mission_date" name="mission_date"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"><label>Date de fin :</label><input type="date" id="end_date" name="end_date"></td>
                                 </tr>
                                 <tr>
                                     <td colspan="2"><label>Description :</label><textarea id="description" name="description"></textarea></td>
