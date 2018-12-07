@@ -83,6 +83,7 @@
                 <a href="#"><span class="glyphicon glyphicon-list-alt"></span><span class="nav-label">Gestion Agent</span></a>
                 <a href="#"><span class="glyphicon glyphicon-list-alt"></span><span class="nav-label">Gestion Matériel</span></a>
                 <a href="{{ route('dashboard.registerToken') }}"><span class="glyphicon glyphicon-list-alt"></span><span class="nav-label">Génération token d'accès</span></a>
+                <a href="{{ route('dashboard.alerts') }}"><span class="glyphicon glyphicon-list-alt"></span><span class="nav-label">Message d'alerte</span></a>
             </li>
         </ul>
         </nav>

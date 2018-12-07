@@ -31,6 +31,8 @@ Route::name('dashboard.')->middleware('auth')->group(function(){
     Route::get('generateTokenRegistration', 'DashboardController@registerToken')->name('registerToken');
     Route::post('generateTokenRegistration', 'DashboardController@storeToken')->name('storeToken');
     Route::post('changeTheme', 'DashboardController@changeTheme')->name('changeTheme');
+    Route::post('storeAlert', 'AlertsController@storeAlert')->name('storeAlert');
+    Route::get('alerts', 'AlertsController@alerts')->name('alerts');
   });
 });
 
